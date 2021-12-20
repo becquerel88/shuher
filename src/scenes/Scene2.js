@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { itemIds, zoneIds } from '../consts/common';
 import { forEach } from 'lodash';
+import startDrag from '../classes/dragSystem';
 
 let itemsInfoArray = [
     {
@@ -54,11 +55,10 @@ let zonesInfoArray = [
 
 ];
 
-let buttonIsClicked = false; //check mousebutton condition
-
 let itemCounterToHide = itemsInfoArray.length;
 
 class Scene2 extends Phaser.Scene {
+    buttonIsClicked = false;
 
     preload() {
         //load images
@@ -76,7 +76,7 @@ class Scene2 extends Phaser.Scene {
         //make items draggable
 
         this.physics.add.overlap(itemsArray, zonesArray, function (object1, object2) {
-            if (object1.zoneId == object2.texture.key && !buttonIsClicked) {
+            if (object1.zoneId == object2.texture.key && !this.buttonIsClicked) {
                 object1.destroy();
                 itemCounterToHide--;
                 console.log(itemCounterToHide);
@@ -84,7 +84,7 @@ class Scene2 extends Phaser.Scene {
         }, null, this);
 
         //event listener to drag
-        this.input.on('pointerdown', this.startDrag, this);
+        this.input.on('pointerdown', startDrag, this);
     }
 
     loadResources() {
@@ -127,28 +127,6 @@ class Scene2 extends Phaser.Scene {
 
         return zonesArray;
     } 
-
-    startDrag(pointer, targets) {
-        this.dragObject = targets[0];
-        if (!this.dragObject) return; // if object interactive is false, skip it 
-        this.input.off('pointerdown', this.startDrag, this);
-        buttonIsClicked = true;
-        this.input.on('pointermove', this.doDrag, this);
-        this.input.on('pointerup', this.stopDrag, this);
-
-    }
-
-    doDrag(pointer) {
-        this.dragObject.x = pointer.x;
-        this.dragObject.y = pointer.y;
-    }
-
-    stopDrag() {
-        this.input.on('pointerdown', this.startDrag, this);
-        this.input.off('pointermove', this.doDrag, this);
-        this.input.off('pointerup', this.stopDrag, this);
-        buttonIsClicked = false;
-    }
 }
 
 export default Scene2;
