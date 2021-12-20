@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
-import {itemIds, zoneIds} from '../consts/common';
+import { itemIds, zoneIds } from '../consts/common';
+import { forEach } from 'lodash';
 
 let itemsInfoArray = [
     {
@@ -106,25 +107,26 @@ class Scene2 extends Phaser.Scene {
     createItems() {
         let itemsArray = [];
 
-        for (let i = 0; i < itemsInfoArray.length; i++) {
-            let item = this.physics.add.image(itemsInfoArray[i].xPosition, itemsInfoArray[i].yPosition, itemsInfoArray[i].itemKey);
-            item.zoneId = itemsInfoArray[i].zoneId;
+        forEach(itemsInfoArray, function(element) {
+            let item = this.physics.add.image(element.xPosition, element.yPosition, element.itemKey);
+            item.zoneId =  element.zoneId;
             item.setInteractive();
             itemsArray.push(item);
-        }
+        }.bind(this));
 
         return itemsArray;
-    } //**** */
+    } 
 
     createZones() {
         let zonesArray = [];
-        for (let i = 0; i < zonesInfoArray.length; i++) {
-            let zone = this.physics.add.image(zonesInfoArray[i].xPosition, zonesInfoArray[i].yPosition, zonesInfoArray[i].zoneKey);
-            zonesArray.push(zone);
-        }
-        
+
+        forEach(zonesInfoArray, function(element) {
+            let zone = this.physics.add.image(element.xPosition, element.yPosition, element.zoneKey);
+            zonesArray.push(zone)
+        }.bind(this));
+
         return zonesArray;
-    } //**** */
+    } 
 
     startDrag(pointer, targets) {
         this.dragObject = targets[0];
