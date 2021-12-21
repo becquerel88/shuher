@@ -58,7 +58,11 @@ let zonesInfoArray = [
 let itemCounterToHide = itemsInfoArray.length;
 
 class Scene2 extends Phaser.Scene {
-    buttonIsClicked = false;
+    constructor() {
+        super('Scene2');
+    }
+
+    isMovingMouse = false; // When true, moving the item on the Scene
 
     preload() {
         //load images
@@ -76,7 +80,7 @@ class Scene2 extends Phaser.Scene {
         //make items draggable
 
         this.physics.add.overlap(itemsArray, zonesArray, function (object1, object2) {
-            if (object1.zoneId == object2.texture.key && !this.buttonIsClicked) {
+            if (object1.zoneId == object2.texture.key && !this.isMovingMouse) {
                 object1.destroy();
                 itemCounterToHide--;
                 console.log(itemCounterToHide);

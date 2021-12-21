@@ -3,7 +3,7 @@ function startDrag(pointer, targets) {
 
     if (!this.dragObject) return; // if object interactive is false, skip it 
     this.input.off('pointerdown', this.startDrag, this);
-    this.buttonIsClicked = true;
+    this.isMovingMouse = true;
     this.input.on('pointermove', doDrag, this);
     this.input.on('pointerup', stopDrag, this);
 
@@ -18,7 +18,7 @@ function stopDrag() {
     this.input.on('pointerdown', startDrag, this);
     this.input.off('pointermove', doDrag, this);
     this.input.off('pointerup', stopDrag, this);
-    this.buttonIsClicked = false;
+    this.isMovingMouse = false;
 }
 
 export default startDrag;
