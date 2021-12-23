@@ -67,9 +67,15 @@ class Scene2 extends Phaser.Scene {
     preload() {
         //load images
         this.loadResources();
+
+        this.load.audio('music2', 'assets/sounds/music2.ogg');
     }
 
     create() {
+        let mainMusic = this.sound.add('music2');
+        mainMusic.play();
+        mainMusic.setLoop(true);
+        this.cameras.main.fadeIn(300, 0, 0, 0);
         this.physics.add.image(900, 600, itemIds.BACKGROUND);
 
         //create zones
@@ -89,6 +95,13 @@ class Scene2 extends Phaser.Scene {
 
         //event listener to drag
         this.input.on('pointerdown', startDrag, this);
+    }
+
+    update() {
+        if (itemCounterToHide == 0) {
+            this.scene.start('RootScene', this.constructor.name);
+            
+        }
     }
 
     loadResources() {
@@ -111,26 +124,26 @@ class Scene2 extends Phaser.Scene {
     createItems() {
         let itemsArray = [];
 
-        forEach(itemsInfoArray, function(element) {
+        forEach(itemsInfoArray, function (element) {
             let item = this.physics.add.image(element.xPosition, element.yPosition, element.itemKey);
-            item.zoneId =  element.zoneId;
+            item.zoneId = element.zoneId;
             item.setInteractive();
             itemsArray.push(item);
         }.bind(this));
 
         return itemsArray;
-    } 
+    }
 
     createZones() {
         let zonesArray = [];
 
-        forEach(zonesInfoArray, function(element) {
+        forEach(zonesInfoArray, function (element) {
             let zone = this.physics.add.image(element.xPosition, element.yPosition, element.zoneKey);
             zonesArray.push(zone)
         }.bind(this));
 
         return zonesArray;
-    } 
+    }
 }
 
 export default Scene2;

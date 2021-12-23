@@ -1,6 +1,4 @@
 import Phaser from 'phaser';
-import { itemIds, zoneIds } from '../consts/common';
-import startDrag from '../classes/dragSystem';
 
 class Scene3 extends Phaser.Scene {
     constructor() {
@@ -8,18 +6,16 @@ class Scene3 extends Phaser.Scene {
     }
 
     preload() {
-        //load background
-        this.load.image(itemIds.BACKGROUND, 'assets/background.png');
-        this.load.image('witcher3', 'assets/witcher3.jpg');
+        this.load.image();
     }
 
     create() {
-        this.physics.add.image(900, 600, itemIds.BACKGROUND);
-        this.physics.add.image(900, 600, 'witcher3');
+        // this.add.text(100, 100, 'Wake up, Neo...', { font: '42px Courier', fill: '#00ff00' });
+        // this.add.text(100, 150, 'Click to restart...', { font: '42px Courier', fill: '#00ff00' });
 
-        this.input.on('pointerdown', function(pointer){
-            this.scene.start('Scene2'); 
-        }, this);
+        // this.input.on('pointerdown', function(pointer){
+        //     this.scene.start('Scene1'); 
+        // }, this);
     }
 }
 
