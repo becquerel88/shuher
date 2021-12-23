@@ -67,14 +67,9 @@ class Scene2 extends Phaser.Scene {
     preload() {
         //load images
         this.loadResources();
-
-        this.load.audio('music2', 'assets/sounds/music2.ogg');
     }
 
     create() {
-        let mainMusic = this.sound.add('music2');
-        mainMusic.play();
-        mainMusic.setLoop(true);
         this.cameras.main.fadeIn(300, 0, 0, 0);
         this.physics.add.image(900, 600, itemIds.BACKGROUND);
 
@@ -100,7 +95,6 @@ class Scene2 extends Phaser.Scene {
     update() {
         if (itemCounterToHide == 0) {
             this.scene.start('RootScene', this.constructor.name);
-            
         }
     }
 
@@ -109,7 +103,7 @@ class Scene2 extends Phaser.Scene {
         this.load.image(itemIds.BACKGROUND, 'assets/background.png');
 
         //load items
-        this.load.image(itemIds.PANTS, 'assets/pants.png');
+        // this.load.image(itemIds.PANTS, 'assets/pants.png');
         this.load.image(itemIds.CONDOMS, 'assets/condoms.png');
         this.load.image(itemIds.ASHTRAY, 'assets/ashtray.png');
         this.load.image(itemIds.FRIEND, 'assets/friend.png');

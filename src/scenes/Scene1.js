@@ -9,22 +9,22 @@ class Scene1 extends Phaser.Scene {
 
     preload() {
         // load background
-        this.load.image('menubackground', 'assets/mainmenu_background.png');
-        this.load.spritesheet('startbtn', 'assets/startbtn.png', { frameWidth: 290, frameHeight: 30 });
+        this.load.image('scene1Background', 'assets/scene1_background.png');
+        this.load.spritesheet('startBtn', 'assets/startbtn.png', { frameWidth: 290, frameHeight: 30 });
 
         this.load.audio('click', 'assets/sounds/click.ogg');
         this.load.audio('music', 'assets/sounds/music.ogg');
     }
 
     create() {
-        this.physics.add.image(900, 750, 'menubackground');
+        this.physics.add.image(900, 750, 'scene1Background');
         let clickSound = this.sound.add('click');
         let preloadMusic = this.sound.add('music');
         preloadMusic.play();
         preloadMusic.setLoop(true);
         
 
-        let startBtn = this.physics.add.sprite(1300, 1000, 'startbtn').setInteractive();
+        let startBtn = this.physics.add.sprite(1300, 1000, 'startBtn').setInteractive();
         startBtn.setScale(1.6);
 
         startBtn.on('pointerdown', function (pointer) {

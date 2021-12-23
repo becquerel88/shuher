@@ -19,18 +19,16 @@ class RootScene extends Phaser.Scene {
 
         switch(this.scenename) {
             case 'Scene1' : {
-                this.scene.start('Scene2');
+                this.scene.start('Scene2Preload');
                 break;
             }
-            case 'Scene2' : {
-                console.log('Запускаю Scene3');
+            case 'Scene2Preload' : {
+                this.scene.start('Scene2');
                 break;                
             }
+            
         }
-        
-        
-
-        // this.selectScene(this.scenename);
+            
     }
 
 
