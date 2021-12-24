@@ -5,10 +5,6 @@ class Scene3 extends Phaser.Scene {
         super('Scene3');
     }
 
-    preload() {
-        this.load.image();
-    }
-
     create() {
         // this.add.text(100, 100, 'Wake up, Neo...', { font: '42px Courier', fill: '#00ff00' });
         // this.add.text(100, 150, 'Click to restart...', { font: '42px Courier', fill: '#00ff00' });

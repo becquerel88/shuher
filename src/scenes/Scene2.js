@@ -73,13 +73,13 @@ class Scene2 extends Phaser.Scene {
         this.cameras.main.fadeIn(300, 0, 0, 0);
         this.physics.add.image(900, 600, itemIds.BACKGROUND);
 
-        //create zones
+        // create zones
         let zonesArray = this.createZones();
 
-        //create items
+        // create items
         let itemsArray = this.createItems();
-        //make items draggable
 
+        // create overlap
         this.physics.add.overlap(itemsArray, zonesArray, function (object1, object2) {
             if (object1.zoneId == object2.texture.key && !this.isMovingMouse) {
                 object1.destroy();
@@ -96,23 +96,6 @@ class Scene2 extends Phaser.Scene {
         if (itemCounterToHide == 0) {
             this.scene.start('RootScene', this.constructor.name);
         }
-    }
-
-    loadResources() {
-        //load background
-        this.load.image(itemIds.BACKGROUND, 'assets/background.png');
-
-        //load items
-        // this.load.image(itemIds.PANTS, 'assets/pants.png');
-        this.load.image(itemIds.CONDOMS, 'assets/condoms.png');
-        this.load.image(itemIds.ASHTRAY, 'assets/ashtray.png');
-        this.load.image(itemIds.FRIEND, 'assets/friend.png');
-        this.load.image(itemIds.HOOKAH, 'assets/hookah.png');
-
-        //load containers
-        this.load.image(zoneIds.TRASHBIN, 'assets/trashbin.png');
-        this.load.image(zoneIds.LOCKER, 'assets/trashbin.png');
-        this.load.image(zoneIds.BED, 'assets/trashbin.png');
     }
 
     createItems() {

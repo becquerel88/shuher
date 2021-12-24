@@ -1,6 +1,8 @@
 export const itemIds = {
     // background
-    BACKGROUND: 'background',
+    TITLE_BACKGROUND: 'titleBackground',
+    PRELOADER_BACKGROUND: 'preloaderBackground',
+    MAIN_BACKGROUND: 'mainBackground',
 
     // items ids
     PANTS: 'pants',
@@ -15,4 +17,21 @@ export const zoneIds = {
     TRASHBIN: 'trashbin',
     LOCKER: 'locker',
     BED: 'bed'
+};
+
+// ui ids
+export const uiIds = {
+    START_BUTTON: 'startBtn',
+    PLAY_BUTTON: 'playBtn'
+};
+
+export const soundIds = {
+    PRELOADER_MUSIC: 'preloaderMusic',
+    MAIN_MUSIC: 'mainMusic',
+    BUTTON_CLICK: 'btnClick',
+    BUMP: 'bump'
+};
+
+export const fontIds = {
+    MAIN_FONT: 'mainFont'
 };
