@@ -84,9 +84,11 @@ let itemsInfoArray = [
     },
 ];
 
-class Scene2Preload extends Phaser.Scene {
 
+
+class Scene2Preload extends Phaser.Scene {
     bumpSound;
+    music;
 
     constructor() {
         super('Scene2Preload');
@@ -100,10 +102,10 @@ class Scene2Preload extends Phaser.Scene {
         this.physics.add.image(900, 750, itemIds.PRELOADER_BACKGROUND);
 
         // create sounds
-        let music = this.sound.add(soundIds.PRELOADER_MUSIC);
-        // music.play();
-        // music.setLoop(true);
-        this.bumpSound = this.sound.add(soundIds.BUMP);
+        this.music = this.createMusic();
+        this.bumpSound = this.createBumpSound();
+        // this.music.play();
+        // this.music.setLoop(true);
 
         // create title
         this.createTitle();
@@ -118,23 +120,17 @@ class Scene2Preload extends Phaser.Scene {
         this.createItems();
 
         // create play button
+        this.createPlayBtn();
+    }
 
-        let playBtn = this.physics.add.sprite(900, 1350, uiIds.PLAY_BUTTON).setInteractive();
-        playBtn.setScale(1.5);
+    createMusic() {
+        let music = this.sound.add(soundIds.PRELOADER_MUSIC);
+        return music;
+    }
 
-        playBtn.on('pointerover', function (pointer) {
-            playBtn.setFrame(1);
-            playBtn.setScale(1.7);
-        }, this);
-
-        playBtn.on('pointerout', function (pointer) {
-            playBtn.setFrame(0);
-            playBtn.setScale(1.5);
-        }, this);
-
-        playBtn.on('pointerdown', function() {
-            this.scene.start('RootScene', this.constructor.name)
-        }, this);
+    createBumpSound() {
+        let bumpSound = this.sound.add(soundIds.BUMP);
+        return bumpSound;
     }
 
     createTitle() {
@@ -182,6 +178,32 @@ class Scene2Preload extends Phaser.Scene {
             });
             delay = delay + 700;
         }.bind(this));
+    }
+
+    createPlayBtn() {
+        let playBtn = this.physics.add.sprite(900, 1350, uiIds.PLAY_BUTTON).setInteractive();
+        playBtn.setScale(1.5);
+
+        playBtn.on('pointerover', function (pointer) {
+            playBtn.setFrame(1);
+            playBtn.setScale(1.7);
+        }, this);
+
+        playBtn.on('pointerout', function (pointer) {
+            playBtn.setFrame(0);
+            playBtn.setScale(1.5);
+        }, this);
+
+        playBtn.on('pointerdown', () => {
+            this.music.stop();
+            this.cameras.main.fadeOut(300, 0, 0, 0);
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                this.scene.start('RootScene', this.constructor.name)
+            });
+            playBtn.off('pointerdown'); // disable start button to avoid double click
+
+            this.scene.start('RootScene', this.constructor.name)
+        });
     }
 }
 

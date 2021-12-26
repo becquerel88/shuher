@@ -29,7 +29,7 @@ class RootScene extends Phaser.Scene {
                 break;
             }
             case 'Scene2Preload': {
-                this.scene.start('Scene2');
+                this.scene.start('Scene3');
                 break;
             }
 
@@ -61,9 +61,9 @@ class RootScene extends Phaser.Scene {
         this.load.audio(soundIds.BUMP, 'assets/sounds/bump.ogg');
 
         // load containers
-        this.load.image(zoneIds.TRASHBIN, 'assets/trashbin.png');
-        this.load.image(zoneIds.LOCKER, 'assets/trashbin.png');
-        this.load.image(zoneIds.BED, 'assets/trashbin.png');
+        this.load.image(zoneIds.TRASHBIN, 'assets/trash_bin.png');
+        this.load.image(zoneIds.LOCKER, 'assets/trash_bin.png');
+        this.load.image(zoneIds.BED, 'assets/trash_bin.png');
 
         // load fonts
         loadFont(fontIds.MAIN_FONT, "assets/fonts/neuropol_x_bold.ttf");

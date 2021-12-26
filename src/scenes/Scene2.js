@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { itemIds, zoneIds } from '../consts/common';
 import { forEach } from 'lodash';
-import startDrag from '../classes/dragSystem';
+import startDrag from '../modules/DragSystem';
 
 let itemsInfoArray = [
     {
@@ -65,13 +65,11 @@ class Scene2 extends Phaser.Scene {
     isMovingMouse = false; // When true, moving the item on the Scene
 
     preload() {
-        //load images
-        this.loadResources();
     }
 
     create() {
         this.cameras.main.fadeIn(300, 0, 0, 0);
-        this.physics.add.image(900, 600, itemIds.BACKGROUND);
+        this.physics.add.image(900, 600, itemIds.MAIN_BACKGROUND);
 
         // create zones
         let zonesArray = this.createZones();
