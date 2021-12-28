@@ -29,6 +29,10 @@ class RootScene extends Phaser.Scene {
                 break;
             }
             case 'Scene2Preload': {
+                this.scene.start('Scene2');
+                break;
+            }
+            case 'Scene2': {
                 this.scene.start('Scene3');
                 break;
             }
@@ -42,10 +46,13 @@ class RootScene extends Phaser.Scene {
         this.load.image(itemIds.MAIN_BACKGROUND, 'assets/main_background.png');
         this.load.image(itemIds.PRELOADER_BACKGROUND, 'assets/preloader_background.png');
         this.load.image(itemIds.TITLE_BACKGROUND, 'assets/title_background.png');
+        this.load.image('blur', 'assets/blur.png');
 
         // load ui
         this.load.spritesheet(uiIds.START_BUTTON, 'assets/start_btn.png', { frameWidth: 290, frameHeight: 30 });
         this.load.spritesheet(uiIds.PLAY_BUTTON, 'assets/play_btn.png', { frameWidth: 368, frameHeight: 78 });
+
+        this.load.image(itemIds.UI_BACKGROUND, 'assets/ui_background.png');
 
         // load items
         this.load.image(itemIds.PANTS, 'assets/pants.png');

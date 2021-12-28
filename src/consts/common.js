@@ -3,6 +3,7 @@ export const itemIds = {
     TITLE_BACKGROUND: 'titleBackground',
     PRELOADER_BACKGROUND: 'preloaderBackground',
     MAIN_BACKGROUND: 'mainBackground',
+    UI_BACKGROUND: 'uiBackground',
 
     // items ids
     PANTS: 'pants',

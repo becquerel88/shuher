@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 import RootScene from './scenes/RootScene';
 import Scene1 from './scenes/Scene1';
 import Scene2Preload from './scenes/Scene2_preload';
-import Scene2 from './scenes/Scene2';
+import { Scene2, SceneTest } from './scenes/Scene2';
 import Scene3 from './scenes/Scene3';
 
 const config = {
@@ -18,7 +18,7 @@ const config = {
             debug: false
         }
     },
-    scene: [RootScene, Scene1, Scene2Preload, Scene2, Scene3],
+    scene: [RootScene, Scene1, Scene2Preload, Scene2, Scene3, SceneTest],
     render: {
         pixelArt: false
     }

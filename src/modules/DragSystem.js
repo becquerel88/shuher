@@ -12,6 +12,12 @@ function startDrag(pointer, targets) {
 function doDrag(pointer) {
     this.dragObject.x = pointer.x;
     this.dragObject.y = pointer.y;
+
+    // set bounds for gamescene
+    if (pointer.y >= 1200) {
+        this.dragObject.y = 1200;
+    }
+    
 }
 
 function stopDrag() {
