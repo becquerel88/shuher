@@ -46,4 +46,4 @@ class Scene1 extends Phaser.Scene {
     }
 }
 
-export default Scene1;
+export default Scene1; // можно export default поставить в начале 5 строки, чтобы не делать лишнюю строку
