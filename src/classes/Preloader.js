@@ -9,6 +9,8 @@ class Preloader {
 
     createBackground() {
         this.scene.physics.add.image(900, 750, itemIds.PRELOADER_BACKGROUND);
+
+        
     }
 }
 

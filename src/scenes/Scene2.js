@@ -57,7 +57,7 @@ let zonesInfoArray = [
 
 let itemCounterToHide = itemsInfoArray.length;
 
-export class Scene2 extends Phaser.Scene {
+export default class Scene2 extends Phaser.Scene {
     timer;
     timerText;
 
@@ -93,8 +93,8 @@ export class Scene2 extends Phaser.Scene {
         this.input.on('pointerdown', startDrag, this);
 
         this.timer = this.time.addEvent({
-            // delay: 25000,
-            delay: 2000,
+            delay: 25000,
+            // delay: 2000,
             paused: false,
             callback: this.gameover,
             callbackScope: this
@@ -102,8 +102,6 @@ export class Scene2 extends Phaser.Scene {
 
         this.timerText = this.add.text(200, 1350, '', { font: `70px ${fontIds.MAIN_FONT}`, fill: '#ffffff' });
         this.timerText.setOrigin(0.5, 0.5);
-
-
     }
 
     update() {
@@ -116,7 +114,7 @@ export class Scene2 extends Phaser.Scene {
 
     gameover() {
         this.scene.setActive(false);
-        this.scene.launch('SceneTest', this.constructor.name);
+        this.scene.launch('GameOverScene', this.constructor.name);
     }
 
     createItems() {
@@ -143,23 +141,3 @@ export class Scene2 extends Phaser.Scene {
         return zonesArray;
     }
 }
-
-export class SceneTest extends Phaser.Scene {
-    constructor() {
-        super('SceneTest');
-    }
-
-    init(scenename) {
-        this.scenename = scenename;
-    }
-
-    create() {
-        this.physics.add.image(900, 600, 'blur');
-        let blur = this.add.text(900, 600, 'CLICK TO RESTART', { font: `70px ${fontIds.MAIN_FONT}`, fill: '#ff0000' }).setOrigin(0.5, 0.5);
-
-        this.input.on('pointerdown', () => {
-            this.scene.start(this.scenename);
-        });
-    }
-}
-

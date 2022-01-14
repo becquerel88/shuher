@@ -10,7 +10,10 @@ export const itemIds = {
     CONDOMS: 'condoms',
     ASHTRAY: 'ashtray',
     FRIEND: 'friend',
-    HOOKAH: 'hookah'
+    HOOKAH: 'hookah',
+    DEALER: 'dealer',
+    POSTER: 'poster',
+    SODA: 'sodaandvodka'
 };
 
 // zones ids
