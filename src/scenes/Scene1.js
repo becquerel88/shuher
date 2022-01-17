@@ -1,49 +1,144 @@
 import Phaser from 'phaser';
-import { itemIds, zoneIds, uiIds, soundIds } from '../consts/common';
+import { itemIds, zoneIds, fontIds, backgroundIds } from '../consts/common';
+import { forEach } from 'lodash';
+import startDrag from '../modules/DragSystem';
 
+let itemsInfoArray = [
+    {
+        xPosition: 1430,
+        yPosition: 365,
+        itemKey: itemIds.PANTS,
+        zoneId: zoneIds.LOCKER
+    },
+    {
+        xPosition: 1500,
+        yPosition: 850,
+        itemKey: itemIds.CONDOMS,
+        zoneId: zoneIds.TRASHBIN
+    },
+    {
+        xPosition: 975,
+        yPosition: 900,
+        itemKey: itemIds.ASHTRAY,
+        zoneId: zoneIds.TRASHBIN
+    },
+    {
+        xPosition: 780,
+        yPosition: 1100,
+        itemKey: itemIds.FRIEND,
+        zoneId: zoneIds.BED
+    },
+    {
+        xPosition: 350,
+        yPosition: 600,
+        itemKey: itemIds.HOOKAH,
+        zoneId: zoneIds.BED
+    },
+];
 
-class Scene1 extends Phaser.Scene {
+let zonesInfoArray = [
+    {
+        xPosition: 680,
+        yPosition: 830,
+        zoneKey: zoneIds.TRASHBIN
+    },
+    {
+        xPosition: 1000,
+        yPosition: 400,
+        zoneKey: zoneIds.LOCKER
+    },
+    {
+        xPosition: 1500,
+        yPosition: 1100,
+        zoneKey: zoneIds.BED
+    },
+
+];
+
+let itemCounterToHide = itemsInfoArray.length;
+
+export default class Scene1 extends Phaser.Scene {
+    timer;
+    timerText;
+
     constructor() {
         super('Scene1');
     }
 
+    isMovingMouse = false; // When true, moving the item on the Scene
+
     create() {
-        // create background
-        this.physics.add.image(900, 750, itemIds.TITLE_BACKGROUND);
-        
-        // create ui
-        let startBtn = this.physics.add.sprite(1300, 1000, uiIds.START_BUTTON).setInteractive();
-        startBtn.setScale(1.6);
-        
-        // create sounds
-        let btnClick = this.sound.add(soundIds.BUTTON_CLICK);
-        let music = this.sound.add(soundIds.MAIN_MUSIC);
-        // music.play();
-        // music.setLoop(true);
+        this.cameras.main.fadeIn(300, 0, 0, 0);
+        this.physics.add.image(900, 600, backgroundIds.MAIN_BACKGROUND);
 
-        // eventlistener for mouse clicking on start button
-        startBtn.on('pointerdown', function (pointer) {
-            btnClick.play();
-            music.stop();
-            // create scene change animation
-            this.cameras.main.fadeOut(300, 0, 0, 0);
-            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-                this.scene.start('RootScene', this.constructor.name)
-            });
-            startBtn.off('pointerdown'); // disable start button to avoid double click
-        }, this);
-        
-        // eventlisteners for mouse moving over start button
-        startBtn.on('pointerover', function (pointer) {
-            startBtn.setFrame(1);
-            startBtn.setScale(1.9);
-        }, this);
+        // create zones
+        let zonesArray = this.createZones();
 
-        startBtn.on('pointerout', function (pointer) {
-            startBtn.setFrame(0);
-            startBtn.setScale(1.6);
-        }, this);
+        // create items
+        let itemsArray = this.createItems();
+
+        // create overlap
+        this.physics.add.overlap(itemsArray, zonesArray, function (object1, object2) {
+            if (object1.zoneId == object2.texture.key && !this.isMovingMouse) {
+                object1.destroy();
+                itemCounterToHide--;
+                console.log(itemCounterToHide);
+            }
+        }, null, this);
+
+        // create ui_background
+        const uiBackground = this.physics.add.image(900, 1350, backgroundIds.UI_BACKGROUND);
+
+        // event listener to drag
+        this.input.on('pointerdown', startDrag, this);
+
+
+        this.timer = this.time.addEvent({
+            delay: 25000,
+            // delay: 2000,
+            paused: false,
+            callback: this.gameover,
+            callbackScope: this
+        });
+
+        this.timerText = this.add.text(200, 1350, '', { font: `70px ${fontIds.MAIN_FONT}`, fill: '#ffffff' });
+        this.timerText.setOrigin(0.5, 0.5);
+    }
+
+    update() {
+        this.timerText.setText(this.timer.getRemainingSeconds().toFixed());
+
+        if (itemCounterToHide == 0) {
+            this.scene.start('RootScene', this.constructor.name);
+        }
+    }
+
+    gameover() {
+        this.scene.setActive(false);
+        this.scene.launch('GameOverScene', this.constructor.name);
+    }
+
+    createItems() {
+        let itemsArray = [];
+
+        forEach(itemsInfoArray, function (element) {
+            let item = this.physics.add.image(element.xPosition, element.yPosition, element.itemKey);
+            item.zoneId = element.zoneId;
+            item.setInteractive();
+            itemsArray.push(item);
+        }.bind(this));
+
+        return itemsArray;
+    }
+
+    createZones() {
+        let zonesArray = [];
+
+        forEach(zonesInfoArray, function (element) {
+            let zone = this.physics.add.image(element.xPosition, element.yPosition, element.zoneKey);
+            zonesArray.push(zone)
+        }.bind(this));
+
+        return zonesArray;
     }
 }
-
-export default Scene1;

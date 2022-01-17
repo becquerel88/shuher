@@ -1,11 +1,10 @@
 import Phaser from 'phaser';
 
 import RootScene from './scenes/RootScene';
+import TitleScene from './scenes/TitleScene';
+import Scene1Preloader from './scenes/Scene1Preloader';
 import Scene1 from './scenes/Scene1';
-import Scene2Preload from './scenes/Scene2_preload';
-import Scene2 from './scenes/Scene2';
-import Scene3Preload from './scenes/Scene3_preload';
-
+import Scene2Preloader from './scenes/Scene2Preloader';
 
 import GameOverScene from './scenes/GameOverScene';
 
@@ -21,7 +20,7 @@ const config = {
             debug: false
         }
     },
-    scene: [RootScene, Scene1, Scene2Preload, Scene2, Scene3Preload, GameOverScene],
+    scene: [RootScene, TitleScene, Scene1Preloader, Scene1, Scene2Preloader, GameOverScene],
     render: {
         pixelArt: false
     }

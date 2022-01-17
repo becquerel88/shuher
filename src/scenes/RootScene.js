@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { itemIds, zoneIds, uiIds, soundIds, fontIds } from '../consts/common';
+import { itemIds, zoneIds, uiIds, soundIds, backgroundIds } from '../consts/common';
 import loadFont from '../utils/fontloader'
 
 // Служебная сцена, для переключения уровней и промежуточных сцен
@@ -27,40 +27,37 @@ export default class RootScene extends Phaser.Scene {
 
         if (this.isFirstLaunch) {
             this.isFirstLaunch = false;
-            this.scene.start('Scene1');
+            this.scene.start('TitleScene');
         }
 
         switch (this.scenename) {
+            case 'TitleScene': {
+                this.scene.start('Scene1Preloader');
+                break;
+            }
+            case 'Scene1Preloader': {
+                this.scene.start('Scene1');
+                break;
+            }
             case 'Scene1': {
-                this.scene.start('Scene3Preload');
+                this.scene.start('Scene2Preloader');
                 break;
             }
-            case 'Scene2Preload': {
-                this.scene.start('Scene2');
-                break;
-            }
-            case 'Scene2': {
-                this.scene.start('Scene3Preload');
-                break;
-            }
-
         }
-
     }
 
     loadResources() {
         // Загрузка ресурсов для фонов
-        this.load.image(itemIds.MAIN_BACKGROUND, 'assets/main_background.png');
-        this.load.image(itemIds.PRELOADER_BACKGROUND, 'assets/preloader_background.png');
-        this.load.image(itemIds.TITLE_BACKGROUND, 'assets/title_background.png');
-        this.load.image('blur', 'assets/blur.png');
+        this.load.image(backgroundIds.TITLE_BACKGROUND, 'assets/title_background.png');
+        this.load.image(backgroundIds.MAIN_BACKGROUND, 'assets/main_background.png');
+        this.load.image(backgroundIds.PRELOADER_BACKGROUND, 'assets/preloader_background.png');
+        this.load.image(backgroundIds.UI_BACKGROUND, 'assets/ui_background.png');
+        this.load.image(backgroundIds.GAMEOVER_BG_BLUR, 'assets/blur.png');
 
         // Загрузка ресурсов для кнопок и интерфейсов
         this.load.spritesheet(uiIds.START_BUTTON, 'assets/start_btn.png', { frameWidth: 290, frameHeight: 30 });
         this.load.spritesheet(uiIds.PLAY_BUTTON, 'assets/play_btn.png', { frameWidth: 368, frameHeight: 78 });
-
-        this.load.image(itemIds.UI_BACKGROUND, 'assets/ui_background.png');
-
+        
         // Загрузка ресурсов для игровых предметов
         this.load.image(itemIds.PANTS, 'assets/pants.png');
         this.load.image(itemIds.CONDOMS, 'assets/condoms.png');
@@ -83,6 +80,6 @@ export default class RootScene extends Phaser.Scene {
         this.load.image(zoneIds.BED, 'assets/trash_bin.png');
 
         // Загрузка ресурсов для шрифтов
-        loadFont(fontIds.MAIN_FONT, "assets/fonts/neuropol_x_bold.ttf");
+        loadFont("neuropol_x_bold", "assets/fonts/neuropol_x_bold.ttf");
     }
 }
