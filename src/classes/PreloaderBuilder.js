@@ -6,6 +6,7 @@ export default class PreloaderBuilder {
         this.scene = scene;
         this.title = title;
         this.itemsInfoArray = itemsInfoArray;
+        this.scene.customProperties = {};
     }
 
     // анимация плавного появления сцены
@@ -30,9 +31,10 @@ export default class PreloaderBuilder {
 
     // создание музыки
     createMusic() {
-        this.scene.music = this.scene.sound.add(soundIds.PRELOADER_MUSIC);
-        this.scene.music.play();
-        this.scene.music.setLoop(true);
+        this.scene.customProperties.music = this.scene.sound.add(soundIds.PRELOADER_MUSIC);
+        this.scene.customProperties.music.play();
+        console.log(this);
+        this.scene.customProperties.music.setLoop(true);
     }
 
     // создание звука анимации
@@ -96,7 +98,7 @@ export default class PreloaderBuilder {
 
         playBtn.on('pointerdown', function (pointer) {
             playBtn.off('pointerdown'); // отключает кнопку, чтобы не было даблклика
-            this.music.stop();
+            this.customProperties.music.stop();
             this.cameras.main.fadeOut(300, 0, 0, 0);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                 this.scene.start('RootScene', this.constructor.name)
