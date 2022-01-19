@@ -1,16 +1,18 @@
 // Константы бекграундов
 export const backgroundIds = {
-    TITLE_BACKGROUND: 'titleBackground',
-    PRELOADER_BACKGROUND: 'preloaderBackground',
-    MAIN_BACKGROUND: 'mainBackground',
-    UI_BACKGROUND: 'uiBackground',
-    GAMEOVER_BG_BLUR: 'GameOverBGBlur'
+    INTRO_BG: 'introBg',
+    PRELOADER_BG: 'preloaderBg',
+    MAIN_BG: 'mainBg',
+    UI_BG: 'uiBg',
+    GAMEOVER_BLUR_BG: 'GameOverBlurBg'
 };
 
 // Интерфейсные константы
 export const uiIds = {
-    START_BUTTON: 'startBtn',
-    PLAY_BUTTON: 'playBtn'
+    START_BTN: 'startBtn',
+    PLAY_BTN: 'playBtn',
+    RESTART_BTN: 'restartBtn',
+    CONTINUE_BTN: 'continueBtn'
 };
 
 // Константы шрифтов
@@ -18,7 +20,8 @@ export const fontIds = {
     TITLE_FONT: { font: '110px neuropol_x_bold', fill: '#ffffff' },
     SUBTITLE_FONT: { font: '72px neuropol_x_bold', fill: '#000000' },
     DESCRIPTION_FONT: { font: '40px neuropol_x_bold', fill: '#ffffff', align: 'center' },
-    GAMEOVER_FONT: { font: '40px neuropol_x_bold', fill: '#fe0000' }
+    GAMEOVER_FONT: { font: '40px neuropol_x_bold', fill: '#fe0000' },
+    TEXT_FONT: { font: '68px comic_sans_bold', fill: '#000000', align: 'center' }
 };
 
 // Константы предметов
@@ -44,6 +47,6 @@ export const zoneIds = {
 export const soundIds = {
     PRELOADER_MUSIC: 'preloaderMusic',
     MAIN_MUSIC: 'mainMusic',
-    BUTTON_CLICK: 'btnClick',
+    BTN_CLICK: 'btnClick',
     BUMP: 'bump'
 };

@@ -17,12 +17,12 @@ export default class SceneBuilder {
 
     // создание бекграунда
     createBackground() {
-        this.scene.physics.add.image(900, 600, backgroundIds.MAIN_BACKGROUND);
+        this.scene.physics.add.image(900, 600, backgroundIds.MAIN_BG);
     }
 
     // создание бекграунда UI бара
     createUIBarBackground() {
-        this.scene.physics.add.image(900, 1350, backgroundIds.UI_BACKGROUND);
+        this.scene.physics.add.image(900, 1350, backgroundIds.UI_BG);
     }
 
     // создание зон
@@ -74,10 +74,8 @@ export default class SceneBuilder {
 
             this.customProperties.zoneAnimation.setFrame(0);
 
-
             this.input.off('pointerdown', this.startDrag, this);
             this.customProperties.isMovingMouse = true; // регистрация перемещения курсора
-
             this.input.on('pointermove', doDrag, this);
             this.input.on('pointerup', stopDrag, this);
         }
@@ -98,7 +96,6 @@ export default class SceneBuilder {
             this.input.off('pointerup', stopDrag, this);
 
             // анимация зоны в исходное состояние
-            this.customProperties.zoneAnimation.setFrame(1);
             this.customProperties.isMovingMouse = false;
         }
     }
@@ -110,10 +107,17 @@ export default class SceneBuilder {
             // декремент счетчика оставшихся на сцене предметов
             if (object1.suitableZone == object2.zoneKey && !this.isMovingMouse) {
                 object1.destroy();
+                this.zoneAnimation.setFrame(1);
                 this.itemCounterToHide--;
                 console.log(this.itemCounterToHide);
             }
         }, null, this.scene.customProperties);
+    }
+
+    gameover() {
+        // console.log(this.scene);
+        //     this.scene.setActive(false);
+        // this.scene.launch('GameOverScene', this.constructor.name);
     }
 
     buildScene() {
@@ -121,9 +125,11 @@ export default class SceneBuilder {
         this.createFadeIn();
         this.createZones();
         this.createItems();
+        this.createUIBarBackground();
         this.createItemsCounter();
         this.makeItemsDraggable();
         this.createOverlap();
+        this.gameover();
     }
 }
 

@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { uiIds, soundIds, backgroundIds, itemIds } from '../consts/common';
+import { uiIds, soundIds, backgroundIds } from '../consts/common';
 
 
 export default class TitleScene extends Phaser.Scene {
@@ -9,14 +9,14 @@ export default class TitleScene extends Phaser.Scene {
 
     create() {
         // create background
-        this.physics.add.image(900, 750, backgroundIds.TITLE_BACKGROUND);
+        this.physics.add.image(900, 750, backgroundIds.TITLE_BG);
 
         // create ui
-        let startBtn = this.physics.add.sprite(1300, 1000, uiIds.START_BUTTON).setInteractive();
+        let startBtn = this.physics.add.sprite(1300, 1000, uiIds.START_BTN).setInteractive();
         startBtn.setScale(1.6);
 
         // create sounds
-        let btnClick = this.sound.add(soundIds.BUTTON_CLICK);
+        let btnClick = this.sound.add(soundIds.BTN_CLICK);
         let music = this.sound.add(soundIds.MAIN_MUSIC);
         music.play();
         music.setLoop(true);

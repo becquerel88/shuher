@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 
 import RootScene from './scenes/RootScene';
+import ModalScene from './scenes/ModalScene';
 import TitleScene from './scenes/TitleScene';
 import Scene1Preloader from './scenes/Scene1Preloader';
 import Scene1 from './scenes/Scene1';
@@ -20,7 +21,14 @@ const config = {
             debug: false
         }
     },
-    scene: [RootScene, TitleScene, Scene1Preloader, Scene1, Scene2Preloader, GameOverScene],
+    scene: [
+        RootScene,
+        ModalScene,
+        TitleScene,
+        Scene1Preloader,
+        Scene1,
+        Scene2Preloader,
+        GameOverScene],
     render: {
         pixelArt: false
     }

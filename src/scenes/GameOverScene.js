@@ -10,7 +10,7 @@ export default class GameOverScene extends Phaser.Scene {
     }
 
     create() {
-        this.physics.add.image(900, 600, backgroundIds.GAMEOVER_BG_BLUR);
+        this.physics.add.image(900, 600, backgroundIds.GAMEOVER_BLUR_BG);
         this.add.text(900, 600, 'CLICK TO RESTART', fontIds.GAMEOVER_FONT).setOrigin(0.5, 0.5);
 
         this.input.on('pointerdown', () => {

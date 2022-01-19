@@ -15,7 +15,7 @@ export default class PreloaderBuilder {
     }
     // создание бекграунда
     createBackground() {
-        this.scene.add.image(900, 750, backgroundIds.PRELOADER_BACKGROUND);
+        this.scene.add.image(900, 750, backgroundIds.PRELOADER_BG);
 
     }
 
@@ -84,7 +84,7 @@ export default class PreloaderBuilder {
 
     // создание кнопки play
     createPlayButton() {
-        let playBtn = this.scene.physics.add.sprite(900, 1350, uiIds.PLAY_BUTTON).setInteractive().setScale(1.5);
+        let playBtn = this.scene.physics.add.sprite(900, 1350, uiIds.PLAY_BTN).setInteractive().setScale(1.5);
 
         playBtn.on('pointerover', function (pointer) {
             playBtn.setFrame(1);
