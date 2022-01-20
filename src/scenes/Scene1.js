@@ -15,8 +15,8 @@ export default class Scene1 extends Phaser.Scene {
 
     update() {
         if (this.customProperties.itemCounterToHide == 0) {
-                    this.scene.start('RootScene', this.constructor.name);
-                }
+            this.scene.start('RootScene', { scene: this.constructor.name });
+        }
     }
 }
 

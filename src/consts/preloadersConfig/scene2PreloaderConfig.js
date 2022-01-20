@@ -9,7 +9,7 @@ export default [
         description: {
             xPosition: 300,
             yPosition: 1050,
-            title: "FRACTAL\nPOSTER",
+            value: "FRACTAL\nPOSTER",
             scale: 1.3
         }
     },
@@ -21,7 +21,7 @@ export default [
         description: {
             xPosition: 900,
             yPosition: 1050,
-            title: "DRUG\nDEALER",
+            value: "DRUG\nDEALER",
             scale: 1.3
         }
     },
@@ -33,7 +33,7 @@ export default [
         description: {
             xPosition: 1450,
             yPosition: 1050,
-            title: "SODA &\n VODKA",
+            value: "SODA &\n VODKA",
             scale: 1.3
         }
     }

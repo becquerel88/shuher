@@ -4,15 +4,14 @@ import loadFont from '../utils/fontloader'
 
 // Служебная сцена, для переключения уровней и промежуточных сцен
 export default class RootScene extends Phaser.Scene {
-    isFirstLaunch = true;
 
     constructor() {
         super('RootScene');
     }
 
     // Метод, который принимает данные, переданные этой сцене при ее открытии
-    init(scenename) {
-        this.scenename = scenename;
+    init(initConfig) {
+        this.initConfig = initConfig;
     }
 
     preload() {
@@ -25,13 +24,14 @@ export default class RootScene extends Phaser.Scene {
         Если первый раз попадаешь на эту сцену, то запускается первый уровень, 
         в остальных случаях работает переключатель сцен */
 
-        if (this.isFirstLaunch) {
-            this.isFirstLaunch = false;
-            this.scene.start('ModalScene');
+        if (Object.keys(this.initConfig).length == 0) {
+            this.scene.start('IntroScene');
         }
 
-        switch (this.scenename) {
-            case 'ModalScene': {
+        console.log('пришел с ' + this.initConfig.scene);
+
+        switch (this.initConfig.scene) {
+            case 'IntroScene': {
                 this.scene.start('TitleScene');
                 break;
             }
@@ -54,6 +54,7 @@ export default class RootScene extends Phaser.Scene {
         // Загрузка ресурсов для фонов
         this.load.image(backgroundIds.INTRO_BG, 'assets/intro_bg.png');
         this.load.image(backgroundIds.PRELOADER_BG, 'assets/preloader_bg.png');
+        this.load.image(backgroundIds.MAIN_BG, 'assets/main_bg.png')
         this.load.image(backgroundIds.UI_BG, 'assets/ui_bg.png');
         this.load.image(backgroundIds.GAMEOVER_BLUR_BG, 'assets/blur.png');
 

@@ -78,7 +78,7 @@ export default class PreloaderBuilder {
     // создание описаний предметов
     createDescriptions() {
         forEach(this.itemsInfoArray, function (element) {
-            this.add.text(element.description.xPosition, element.description.yPosition, element.description.title, fontIds.DESCRIPTION_FONT).setOrigin(0.5, 0.5).setScale(1.5);
+            this.add.text(element.description.xPosition, element.description.yPosition, element.description.value, fontIds.DESCRIPTION_FONT).setOrigin(0.5, 0.5).setScale(1.5);
         }.bind(this.scene));
     }
 
@@ -101,7 +101,7 @@ export default class PreloaderBuilder {
             this.customProperties.music.stop();
             this.cameras.main.fadeOut(300, 0, 0, 0);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-                this.scene.start('RootScene', this.constructor.name)
+                this.scene.start('RootScene', { scene: this.constructor.name});
             });
         }, this.scene);
     }
