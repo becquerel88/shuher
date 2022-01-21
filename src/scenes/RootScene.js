@@ -20,15 +20,16 @@ export default class RootScene extends Phaser.Scene {
     }
 
     create() {
-        /*  Проверка на первый запуск игры.
-        Если первый раз попадаешь на эту сцену, то запускается первый уровень, 
-        в остальных случаях работает переключатель сцен */
+        /*  Проверка на первый запуск игры. Если первый раз попадаешь на эту сцену, то запускается первый уровень, в остальных случаях работает переключатель сцен */
 
-        if (Object.keys(this.initConfig).length == 0) {
-            this.scene.start('IntroScene');
-        }
+        if (localStorage.getItem("initConfig") == null) {
+            this.scene.start('Scene1');
+        }   
 
-        console.log('пришел с ' + this.initConfig.scene);
+        // console.log();
+        if (Object.keys(this.initConfig).length != 0) {
+            // localStorage.setItem('initConfig', JSON.stringify(this.initConfig));
+        } 
 
         switch (this.initConfig.scene) {
             case 'IntroScene': {

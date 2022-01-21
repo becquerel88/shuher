@@ -9,8 +9,8 @@ export const itemsInfo = [
         suitableZone: zoneIds.LOCKER
     },
     {
-        xPosition: 1500,
-        yPosition: 850,
+        xPosition: 1550,
+        yPosition: 680,
         itemKey: itemIds.CONDOMS,
         scale: 1,
         suitableZone: zoneIds.TRASHBIN
@@ -19,7 +19,7 @@ export const itemsInfo = [
         xPosition: 975,
         yPosition: 900,
         itemKey: itemIds.ASHTRAY,
-        scale: 1,
+        scale: 1.1,
         suitableZone: zoneIds.TRASHBIN
     },
     {

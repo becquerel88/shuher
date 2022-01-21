@@ -5,11 +5,11 @@ export default [
         xPosition: 330,
         yPosition: 520,
         itemKey: itemIds.CONDOMS,
-        scale: 1.8,
+        scale: 1.7,
         description: {
             xPosition: 350,
             yPosition: 700,
-            title: "CONDOMS",
+            value: "CONDOMS",
             scale: 1
         }
     },
@@ -21,7 +21,7 @@ export default [
         description: {
             xPosition: 350,
             yPosition: 1100,
-            title: "ASHTRAY",
+            value: "ASHTRAY",
             scale: 1
         }
     },
@@ -33,7 +33,7 @@ export default [
         description: {
             xPosition: 900,
             yPosition: 1150,
-            title: "HOOKAH",
+            value: "HOOKAH",
             scale: 1
         }
     },
@@ -45,7 +45,7 @@ export default [
         description: {
             xPosition: 1450,
             yPosition: 1100,
-            title: "PARTNER\nPANTS",
+            value: "PARTNER\nPANTS",
             scale: 1
         }
     },
@@ -53,11 +53,11 @@ export default [
         xPosition: 1450,
         yPosition: 500,
         itemKey: itemIds.FRIEND,
-        scale: 0.9,
+        scale: 1,
         description: {
             xPosition: 1450,
             yPosition: 700,
-            title: "MONGED\nFRIEND",
+            value: "MONGED\nFRIEND",
             scale: 1
         }
     },

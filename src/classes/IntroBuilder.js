@@ -50,16 +50,20 @@ export default class IntroBuilder {
                 this.customProperties.btnSound.play();
                 this.customProperties.music.stop();
 
-                if (element.value == uiIds.CONTINUE_BTN) {
-                    this.scene.start('RootScene', { scene: this.constructor.name, button: uiIds.CONTINUE_BTN });
+                switch (element.value) {
+                    case uiIds.CONTINUE_BTN: {
+                        this.scene.start('RootScene', { scene: this.constructor.name, button: uiIds.CONTINUE_BTN });
+                        break;
+                    }
+                    case uiIds.RESTART_BTN: {
+                        this.scene.start('RootScene', { scene: this.constructor.name, button: uiIds.RESTART_BTN });
+                        break;
+                    }
+                    case uiIds.START_BTN: {
+                        this.scene.start('RootScene', { scene: this.constructor.name, button: uiIds.START_BTN });
+                        break;
+                    }
                 }
-                else if (element.value == uiIds.RESTART_BTN) {
-                    this.scene.start('RootScene', { scene: this.constructor.name, button: uiIds.RESTART_BTN });
-                }
-                else {
-                    this.scene.start('RootScene', { scene: this.constructor.name, button: uiIds.RESTART_BTN });
-                }
-
             }, this);
         }.bind(this.scene));
     }
