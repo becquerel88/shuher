@@ -1,4 +1,4 @@
-import { backgroundIds, fontIds } from "../consts/common";
+import { backgrounds, fontIds } from "../consts/common";
 
 export default class GameOverScene extends Phaser.Scene {
     constructor() {
@@ -10,7 +10,7 @@ export default class GameOverScene extends Phaser.Scene {
     }
 
     create() {
-        this.physics.add.image(900, 600, backgroundIds.GAMEOVER_BLUR_BG);
+        this.physics.add.image(900, 600, backgrounds.GAMEOVER_BLUR_BG.name);
         this.add.text(900, 600, 'CLICK TO RESTART', fontIds.GAMEOVER_FONT).setOrigin(0.5, 0.5);
 
         this.input.on('pointerdown', () => {

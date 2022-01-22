@@ -1,4 +1,4 @@
-import { backgroundIds } from '../consts/common';
+import { backgrounds } from '../consts/common';
 import { find, forEach } from 'lodash';
 
 export default class SceneBuilder {
@@ -17,12 +17,12 @@ export default class SceneBuilder {
 
     // создание бекграунда
     createBackground() {
-        this.scene.physics.add.image(900, 600, backgroundIds.MAIN_BG);
+        this.scene.physics.add.image(900, 600, backgrounds.MAIN_BG.name);
     }
 
     // создание бекграунда UI бара
     createUIBarBackground() {
-        this.scene.physics.add.image(900, 1350, backgroundIds.UI_BG);
+        this.scene.physics.add.image(900, 1350, backgrounds.UI_BG.name);
     }
 
     // создание зон

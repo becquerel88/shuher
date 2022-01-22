@@ -1,4 +1,4 @@
-import { uiIds, fontIds } from '../common';
+import {fontIds, uiElements } from '../common';
 
 export default {
     text: {
@@ -13,14 +13,14 @@ export default {
         {
             xPosition: 1100,
             yPosition: 920,
-            value: uiIds.CONTINUE_BTN,
+            value: uiElements.CONTINUE_BTN.name,
             scale: 1.3,
             pointerScale: 1.5
         },
         {
             xPosition: 1520,
             yPosition: 920,
-            value: uiIds.RESTART_BTN,
+            value: uiElements.RESTART_BTN.name,
             scale: 1.3,
             pointerScale: 1.5
         }

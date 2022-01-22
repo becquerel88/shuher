@@ -1,4 +1,4 @@
-import { uiIds, fontIds } from '../common';
+import { uiIds, fontIds, uiElements } from '../common';
 
 export default {
     text: {
@@ -13,7 +13,7 @@ export default {
         {
             xPosition: 1300,
             yPosition: 1000,
-            value: uiIds.START_BTN,
+            value: uiElements.START_BTN.name,
             scale: 1.6,
             pointerScale: 1.9
         }

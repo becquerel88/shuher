@@ -1,10 +1,10 @@
-import { itemIds } from "../common";
+import { items } from "../common";
 
 export default [
     {
         xPosition: 300,
         yPosition: 650,
-        itemKey: itemIds.POSTER,
+        itemKey: items.POSTER.name,
         scale: 1,
         description: {
             xPosition: 300,
@@ -16,7 +16,7 @@ export default [
     {
         xPosition: 900,
         yPosition: 650,
-        itemKey: itemIds.DEALER,
+        itemKey: items.DEALER.name,
         scale: 1,
         description: {
             xPosition: 900,
@@ -28,7 +28,7 @@ export default [
     {
         xPosition: 1450,
         yPosition: 650,
-        itemKey: itemIds.SODA,
+        itemKey: items.SODA.name,
         scale: 1,
         description: {
             xPosition: 1450,

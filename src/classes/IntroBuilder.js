@@ -1,5 +1,5 @@
 import { create, forEach } from "lodash";
-import { backgroundIds, fontIds, uiIds, soundIds } from "../consts/common";
+import { backgrounds, fontIds, uiIds, soundIds } from "../consts/common";
 
 export default class IntroBuilder {
     constructor(scene, config) {
@@ -9,7 +9,7 @@ export default class IntroBuilder {
     }
 
     createBackground() {
-        this.scene.physics.add.image(900, 750, backgroundIds.INTRO_BG);
+        this.scene.physics.add.image(900, 750, backgrounds.INTRO_BG.name);
     }
 
     createText() {
@@ -50,20 +50,7 @@ export default class IntroBuilder {
                 this.customProperties.btnSound.play();
                 this.customProperties.music.stop();
 
-                switch (element.value) {
-                    case uiIds.CONTINUE_BTN: {
-                        this.scene.start('RootScene', { scene: this.constructor.name, button: uiIds.CONTINUE_BTN });
-                        break;
-                    }
-                    case uiIds.RESTART_BTN: {
-                        this.scene.start('RootScene', { scene: this.constructor.name, button: uiIds.RESTART_BTN });
-                        break;
-                    }
-                    case uiIds.START_BTN: {
-                        this.scene.start('RootScene', { scene: this.constructor.name, button: uiIds.START_BTN });
-                        break;
-                    }
-                }
+                this.scene.start('RootScene', { scene: this.constructor.name, button: element.value });
             }, this);
         }.bind(this.scene));
     }

@@ -1,38 +1,38 @@
-import { itemIds, zoneIds } from "../common";
+import { items, zoneIds } from "../common";
 
 export const itemsInfo = [
     {
         xPosition: 1430,
         yPosition: 365,
-        itemKey: itemIds.PANTS,
+        itemKey: items.PANTS.name,
         scale: 1,
         suitableZone: zoneIds.LOCKER
     },
     {
         xPosition: 1550,
         yPosition: 680,
-        itemKey: itemIds.CONDOMS,
+        itemKey: items.CONDOMS.name,
         scale: 1,
         suitableZone: zoneIds.TRASHBIN
     },
     {
         xPosition: 975,
         yPosition: 900,
-        itemKey: itemIds.ASHTRAY,
+        itemKey: items.ASHTRAY.name,
         scale: 1.1,
         suitableZone: zoneIds.TRASHBIN
     },
     {
         xPosition: 780,
         yPosition: 1100,
-        itemKey: itemIds.FRIEND,
+        itemKey: items.FRIEND.name,
         scale: 1,
         suitableZone: zoneIds.BED
     },
     {
         xPosition: 350,
         yPosition: 600,
-        itemKey: itemIds.HOOKAH,
+        itemKey: items.HOOKAH.name,
         scale: 1,
         suitableZone: zoneIds.BED
     },

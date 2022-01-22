@@ -1,5 +1,5 @@
 import { forEach } from 'lodash';
-import { uiIds, soundIds, fontIds, backgroundIds } from '../consts/common';
+import { backgrounds, uiElements, soundIds, fontIds } from '../consts/common';
 
 export default class PreloaderBuilder {
     constructor(scene, title, itemsInfoArray) {
@@ -15,7 +15,7 @@ export default class PreloaderBuilder {
     }
     // создание бекграунда
     createBackground() {
-        this.scene.add.image(900, 750, backgroundIds.PRELOADER_BG);
+        this.scene.add.image(900, 750, backgrounds.PRELOADER_BG.name);
 
     }
 
@@ -84,7 +84,7 @@ export default class PreloaderBuilder {
 
     // создание кнопки play
     createPlayButton() {
-        let playBtn = this.scene.physics.add.sprite(900, 1350, uiIds.PLAY_BTN).setInteractive().setScale(1.5);
+        let playBtn = this.scene.physics.add.sprite(900, 1350, uiElements.PLAY_BTN.name).setInteractive().setScale(1.5);
 
         playBtn.on('pointerover', function (pointer) {
             playBtn.setFrame(1);
@@ -101,7 +101,7 @@ export default class PreloaderBuilder {
             this.customProperties.music.stop();
             this.cameras.main.fadeOut(300, 0, 0, 0);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-                this.scene.start('RootScene', { scene: this.constructor.name});
+                this.scene.start('RootScene', { scene: this.constructor.name });
             });
         }, this.scene);
     }

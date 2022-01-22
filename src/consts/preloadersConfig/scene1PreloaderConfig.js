@@ -1,10 +1,10 @@
-import { itemIds } from "../common";
+import { items } from "../common";
 
 export default [
     {
         xPosition: 330,
         yPosition: 520,
-        itemKey: itemIds.CONDOMS,
+        itemKey: items.CONDOMS.name,
         scale: 1.7,
         description: {
             xPosition: 350,
@@ -16,7 +16,7 @@ export default [
     {
         xPosition: 350,
         yPosition: 930,
-        itemKey: itemIds.ASHTRAY,
+        itemKey: items.ASHTRAY.name,
         scale: 1.6,
         description: {
             xPosition: 350,
@@ -28,7 +28,7 @@ export default [
     {
         xPosition: 900,
         yPosition: 890,
-        itemKey: itemIds.HOOKAH,
+        itemKey: items.HOOKAH.name,
         scale: 1.2,
         description: {
             xPosition: 900,
@@ -40,7 +40,7 @@ export default [
     {
         xPosition: 1450,
         yPosition: 935,
-        itemKey: itemIds.PANTS,
+        itemKey: items.PANTS.name,
         scale: 1.4,
         description: {
             xPosition: 1450,
@@ -52,7 +52,7 @@ export default [
     {
         xPosition: 1450,
         yPosition: 500,
-        itemKey: itemIds.FRIEND,
+        itemKey: items.FRIEND.name,
         scale: 1,
         description: {
             xPosition: 1450,
