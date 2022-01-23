@@ -18,7 +18,7 @@ export default class RootScene extends Phaser.Scene {
     create() {
         // Проверка на первый запуск игры
         if (localStorage.getItem("initConfig") == null) {
-            this.scene.start('Scene1');
+            this.scene.start('TitleScene');
         }
         else {
             this.scene.start('IntroScene');

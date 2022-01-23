@@ -1,5 +1,5 @@
 import { forEach } from "lodash";
-import { backgrounds, sounds } from "../consts/common";
+import { backgrounds, sounds, fontIds } from "../consts/common";
 
 export default class IntroBuilder {
     constructor(scene, config) {
@@ -50,7 +50,8 @@ export default class IntroBuilder {
                 this.customProperties.btnSound.play();
                 this.customProperties.music.stop();
 
-                this.scene.start('RootScene', { scene: this.constructor.name, button: element.value });
+                this.scene.start('SceneSwitcher', { scene: this.constructor.name, button: element.value });
+                // console.log(this);
             }, this);
         }.bind(this.scene));
     }

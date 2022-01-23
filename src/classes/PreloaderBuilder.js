@@ -33,7 +33,6 @@ export default class PreloaderBuilder {
     createMusic() {
         this.scene.customProperties.music = this.scene.sound.add(sounds.PRELOADER_MUSIC.name);
         this.scene.customProperties.music.play();
-        console.log(this);
         this.scene.customProperties.music.setLoop(true);
     }
 
@@ -101,7 +100,8 @@ export default class PreloaderBuilder {
             this.customProperties.music.stop();
             this.cameras.main.fadeOut(300, 0, 0, 0);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-                this.scene.start('RootScene', { scene: this.constructor.name });
+                this.scene.start('SceneSwitcher', { scene: this.constructor.name });
+                localStorage.setItem('initConfig', JSON.stringify({ scene: this.constructor.name }));
             });
         }, this.scene);
     }

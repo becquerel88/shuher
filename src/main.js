@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 
 import RootScene from './scenes/RootScene';
+import SceneSwitcher from './scenes/SceneSwitcher';
 import IntroScene from './scenes/IntroScene';
 import TitleScene from './scenes/TitleScene';
 import Scene1Preloader from './scenes/Scene1Preloader';
@@ -8,6 +9,7 @@ import Scene1 from './scenes/Scene1';
 import Scene2Preloader from './scenes/Scene2Preloader';
 
 import GameOverScene from './scenes/GameOverScene';
+
 
 const config = {
     width: 1800,
@@ -23,6 +25,7 @@ const config = {
     },
     scene: [
         RootScene,
+        SceneSwitcher,
         IntroScene,
         TitleScene,
         Scene1Preloader,
