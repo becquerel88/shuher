@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-
 import PreloaderBuilder from '../classes/PreloaderBuilder';
 import scene1PreloaderConfig from '../consts/preloadersConfig/scene1PreloaderConfig';
 

@@ -33,21 +33,26 @@ export const items = {
     HOOKAH: { name: 'hookah', path: 'assets/hookah.png' },
     DEALER: { name: 'dealer', path: 'assets/dealer.png' },
     POSTER: { name: 'poster', path: 'assets/poster.png' },
-    SODA: { name: 'sodaandvodka', path: 'assets/sodaandvodka.png' }
+    SODA: { name: 'sodaandvodka', path: 'assets/soda_and_vodka.png' }
 };
-
 
 // Константы зон
-export const zoneIds = {
-    TRASHBIN: 'trashbin',
-    LOCKER: 'locker',
-    BED: 'bed'
-};
+export const zones = {
+    TRASHBIN: { name: 'trashbin', path: 'assets/trash_bin.png', frameSize: { frameWidth: 205, frameHeight: 252 } },
+    LOCKER: { name: 'locker', path: 'assets/locker.png', frameSize: { frameWidth: 200, frameHeight: 300 } },
+    BED: { name: 'bed', path: 'assets/bed.png', frameSize: { frameWidth: 542, frameHeight: 660 } },
+    CLOSET: { name: 'closet', path: 'assets/closet.png', frameSize: { frameWidth: 532, frameHeight: 627 } }
+}
 
 // Константы звуков
-export const soundIds = {
-    PRELOADER_MUSIC: 'preloaderMusic',
-    MAIN_MUSIC: 'mainMusic',
-    BTN_CLICK: 'btnClick',
-    BUMP: 'bump'
+export const sounds = {
+    MAIN_MUSIC: { name: 'mainMusic', path: 'assets/sounds/main_music.ogg' },
+    PRELOADER_MUSIC: { name: 'preloaderMusic', path: 'assets/sounds/preloader_music.ogg' },
+    BTN_CLICK: { name: 'btnClickSound', path: 'assets/sounds/click_sound.ogg' },
+    BUMP_SOUND: { name: 'bumpSound', path: 'assets/sounds/bump_sound.ogg' },
+    CATCH_SOUND: { name: 'catchSound', path: 'assets/sounds/catch_sound.ogg' },
+    TRASHBIN_SOUND: { name: 'trashbinSound', path: 'assets/sounds/trashbin_sound.ogg' },
+    CLOSET_SOUND: { name: 'closetSound', path: 'assets/sounds/closet_sound.ogg' },
+    BED_SOUND: { name: 'bedSound', path: 'assets/sounds/bed_sound.ogg' },
+
 };

@@ -1,4 +1,4 @@
-import { backgrounds } from '../consts/common';
+import { backgrounds, sounds } from '../consts/common';
 import { find, forEach } from 'lodash';
 
 export default class SceneBuilder {
@@ -32,7 +32,9 @@ export default class SceneBuilder {
         forEach(this.scene.customProperties.zonesInfo, function (element) {
             let zone = this.physics.add.sprite(element.xPosition, element.yPosition, element.zoneKey);
             zone.setOrigin(0.5, 0.5);
-            zone.zoneKey = element.zoneKey;
+            zone.customProperties = {};
+            zone.customProperties.zoneKey = element.zoneKey;
+            zone.customProperties.sound = element.sound;
             zone.setScale(element.scale);
             this.customProperties.zones.push(zone);
         }.bind(this.scene));
@@ -52,6 +54,14 @@ export default class SceneBuilder {
         }.bind(this.scene));
     }
 
+    // создание звуков
+    crateSounds() {
+        this.scene.customProperties.catchSound = this.scene.sound.add(sounds.CATCH_SOUND.name);
+        this.scene.customProperties.closetSound = this.scene.sound.add(sounds.CLOSET_SOUND.name);
+        this.scene.customProperties.trashbinSound = this.scene.sound.add(sounds.TRASHBIN_SOUND.name);
+        this.scene.customProperties.bedSound = this.scene.sound.add(sounds.BED_SOUND.name);
+    }
+
     // создание счетчика предметов на сцене
     createItemsCounter() {
         this.scene.customProperties.itemCounterToHide = this.scene.customProperties.items.length;
@@ -62,14 +72,15 @@ export default class SceneBuilder {
         this.scene.input.on('pointerdown', startDrag, this.scene);
 
         function startDrag(pointer, targets) {
-
             // targets[0] - определение верхнего элемента под курсором
             this.customProperties.dragObject = targets[0];
             if (!this.customProperties.dragObject) return; // пропуск обьекта, если setInteractive обьекта = false
 
+            this.customProperties.catchSound.play();
+
             // определение зоны, в которую должен быть помещен взятый в руку предмет и ее анимация
             this.customProperties.zoneAnimation = find(this.customProperties.zones, function (element) {
-                return element.zoneKey == this.suitableZone;
+                return element.customProperties.zoneKey == this.suitableZone;
             }.bind(this.customProperties.dragObject));
 
             this.customProperties.zoneAnimation.setFrame(0);
@@ -81,6 +92,7 @@ export default class SceneBuilder {
         }
 
         function doDrag(pointer) {
+
             this.customProperties.dragObject.x = pointer.x;
             this.customProperties.dragObject.y = pointer.y;
 
@@ -105,8 +117,9 @@ export default class SceneBuilder {
         this.scene.physics.add.overlap(this.scene.customProperties.items, this.scene.customProperties.zones, function (object1, object2) {
 
             // декремент счетчика оставшихся на сцене предметов
-            if (object1.suitableZone == object2.zoneKey && !this.isMovingMouse) {
+            if (object1.suitableZone == object2.customProperties.zoneKey && !this.isMovingMouse) {
                 object1.destroy();
+                this[object2.customProperties.sound].play();
                 this.zoneAnimation.setFrame(1);
                 this.itemCounterToHide--;
                 console.log(this.itemCounterToHide);
@@ -126,6 +139,7 @@ export default class SceneBuilder {
         this.createZones();
         this.createItems();
         this.createUIBarBackground();
+        this.crateSounds();
         this.createItemsCounter();
         this.makeItemsDraggable();
         this.createOverlap();

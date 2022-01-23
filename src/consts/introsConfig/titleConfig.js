@@ -1,4 +1,4 @@
-import { uiIds, fontIds, uiElements } from '../common';
+import { fontIds, uiElements } from '../common';
 
 export default {
     text: {

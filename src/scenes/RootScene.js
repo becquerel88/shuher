@@ -1,6 +1,6 @@
 import { forEach } from 'lodash';
 import Phaser from 'phaser';
-import { itemIds, zoneIds, soundIds, backgrounds, uiElements, items } from '../consts/common';
+import { backgrounds, uiElements, items, sounds, zones } from '../consts/common';
 import loadFont from '../utils/fontloader'
 
 // Служебная сцена, для переключения уровней и промежуточных сцен
@@ -42,15 +42,14 @@ export default class RootScene extends Phaser.Scene {
         }.bind(this));
 
         // Загрузка ресурсов для музыки и звуков
-        this.load.audio(soundIds.MAIN_MUSIC, 'assets/sounds/music.ogg');
-        this.load.audio(soundIds.PRELOADER_MUSIC, 'assets/sounds/music2.ogg');
-        this.load.audio(soundIds.BTN_CLICK, 'assets/sounds/click.ogg');
-        this.load.audio(soundIds.BUMP, 'assets/sounds/bump.ogg');
+        forEach(sounds, function (element) {
+            this.load.audio(element.name, element.path);
+        }.bind(this));
 
         // Загрузка ресурсов для контейнеров
-        this.load.spritesheet(zoneIds.TRASHBIN, 'assets/trash_bin.png', { frameWidth: 205, frameHeight: 252 });
-        this.load.spritesheet(zoneIds.LOCKER, 'assets/locker.png', { frameWidth: 200, frameHeight: 300 });
-        this.load.spritesheet(zoneIds.BED, 'assets/bed.png', { frameWidth: 542, frameHeight: 660 });
+        forEach(zones, function (element) {
+            this.load.spritesheet(element.name, element.path, element.frameSize);
+        }.bind(this));
 
         // Загрузка ресурсов для шрифтов
         loadFont('neuropol_x_bold', 'assets/fonts/neuropol_x_bold.ttf');

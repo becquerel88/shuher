@@ -1,5 +1,5 @@
 import { forEach } from 'lodash';
-import { backgrounds, uiElements, soundIds, fontIds } from '../consts/common';
+import { backgrounds, uiElements, sounds, fontIds } from '../consts/common';
 
 export default class PreloaderBuilder {
     constructor(scene, title, itemsInfoArray) {
@@ -31,7 +31,7 @@ export default class PreloaderBuilder {
 
     // создание музыки
     createMusic() {
-        this.scene.customProperties.music = this.scene.sound.add(soundIds.PRELOADER_MUSIC);
+        this.scene.customProperties.music = this.scene.sound.add(sounds.PRELOADER_MUSIC.name);
         this.scene.customProperties.music.play();
         console.log(this);
         this.scene.customProperties.music.setLoop(true);
@@ -39,7 +39,7 @@ export default class PreloaderBuilder {
 
     // создание звука анимации
     createBumpSound() {
-        let bumpSound = this.scene.sound.add(soundIds.BUMP);
+        let bumpSound = this.scene.sound.add(sounds.BUMP_SOUND.name);
         this.scene.bumpSound = bumpSound;
     }
 
