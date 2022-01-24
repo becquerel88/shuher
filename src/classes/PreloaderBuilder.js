@@ -29,17 +29,19 @@ export default class PreloaderBuilder {
         this.scene.add.text(900, 200, 'you\'ve got to find and hide', fontIds.SUBTITLE_FONT).setOrigin(0.5, 0.5);
     }
 
-    // создание музыки
-    createMusic() {
+    // создание звуков
+    createSounds() {
+
+        // музыка
         this.scene.customProperties.music = this.scene.sound.add(sounds.PRELOADER_MUSIC.name);
         this.scene.customProperties.music.play();
         this.scene.customProperties.music.setLoop(true);
-    }
-
-    // создание звука анимации
-    createBumpSound() {
-        let bumpSound = this.scene.sound.add(sounds.BUMP_SOUND.name);
-        this.scene.bumpSound = bumpSound;
+        
+        // звук анимации появления предмета
+        this.scene.customProperties.bumpSound = this.scene.sound.add(sounds.BUMP_SOUND.name); 
+        
+        // звук нажатия на кнопку
+        this.scene.customProperties.btnSound = this.scene.sound.add(sounds.BTN_CLICK.name);
     }
 
     // создание предметов
@@ -66,7 +68,7 @@ export default class PreloaderBuilder {
                 duration: 100,
                 delay: delay,
                 onComplete: function () {
-                    this.bumpSound.play();
+                    this.customProperties.bumpSound.play();
                 },
                 onCompleteScope: this
             });
@@ -77,7 +79,7 @@ export default class PreloaderBuilder {
     // создание описаний предметов
     createDescriptions() {
         forEach(this.itemsInfoArray, function (element) {
-            this.add.text(element.description.xPosition, element.description.yPosition, element.description.value, fontIds.DESCRIPTION_FONT).setOrigin(0.5, 0.5).setScale(1.5);
+            this.add.text(element.description.xPosition, element.description.yPosition, element.description.value, fontIds.DESCRIPTION_FONT).setOrigin(0.5, 0.5).setScale(element.description.scale);
         }.bind(this.scene));
     }
 
@@ -97,7 +99,9 @@ export default class PreloaderBuilder {
 
         playBtn.on('pointerdown', function (pointer) {
             playBtn.off('pointerdown'); // отключает кнопку, чтобы не было даблклика
+            this.customProperties.btnSound.play();
             this.customProperties.music.stop();
+            //анимация плавной смены сцены
             this.cameras.main.fadeOut(300, 0, 0, 0);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                 this.scene.start('SceneSwitcher', { scene: this.constructor.name });
@@ -110,12 +114,10 @@ export default class PreloaderBuilder {
     buildScene() {
         this.createBackground();
         this.createFadeIn();
-        this.createMusic();
-        this.createBumpSound();
+        this.createSounds();
         this.createTitle();
         this.createSubtitle();
         this.createItems();
-        this.createBumpSound();
         this.createDescriptions();
         this.createPlayButton();
     }

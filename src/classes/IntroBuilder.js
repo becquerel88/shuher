@@ -8,10 +8,17 @@ export default class IntroBuilder {
         this.scene.customProperties.config = config;
     }
 
+    // анимация плавного появления сцены
+    createFadeIn() {
+        this.scene.cameras.main.fadeIn(300, 0, 0, 0);
+    }
+
+    // создание бекграунда
     createBackground() {
         this.scene.physics.add.image(900, 750, backgrounds.INTRO_BG.name);
     }
 
+    // создание текста
     createText() {
         this.scene.add.text(
             this.scene.customProperties.config.text.xPosition,
@@ -21,16 +28,17 @@ export default class IntroBuilder {
         ).setOrigin(0.5, 0.5).setScale(this.scene.customProperties.config.text.scale);
     }
 
-    createSound() {
-        this.scene.customProperties.btnSound = this.scene.sound.add(sounds.BTN_CLICK.name);
+    // создание звуков
+    createSounds() {
+        // создание музыки
         this.scene.customProperties.music = this.scene.sound.add(sounds.MAIN_MUSIC.name);
-    }
-
-    playMusic() {
         this.scene.customProperties.music.play();
         this.scene.customProperties.music.setLoop(true);
+        // создание звука нажатия на кнопку
+        this.scene.customProperties.btnSound = this.scene.sound.add(sounds.BTN_CLICK.name);
     }
 
+    // создание кнопок
     createButtons() {
         forEach(this.scene.customProperties.config.uiBtns, function (element) {
             let btn = this.physics.add.sprite(element.xPosition, element.yPosition, element.value).setInteractive().setOrigin(0.5, 0.5);
@@ -49,18 +57,20 @@ export default class IntroBuilder {
             btn.on('pointerdown', function (pointer) {
                 this.customProperties.btnSound.play();
                 this.customProperties.music.stop();
-
-                this.scene.start('SceneSwitcher', { scene: this.constructor.name, button: element.value });
-                // console.log(this);
+                // анимация плавной смены сцены
+                this.cameras.main.fadeOut(300, 0, 0, 0);
+                this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                    this.scene.start('SceneSwitcher', { scene: this.constructor.name, button: element.value });
+                });
             }, this);
         }.bind(this.scene));
     }
 
     buildScene() {
+        this.createFadeIn();
         this.createBackground();
         this.createText();
         this.createButtons();
-        this.createSound();
-        this.playMusic();
+        this.createSounds();
     }
 }

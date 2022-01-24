@@ -11,11 +11,10 @@ export default class SceneSwitcher extends Phaser.Scene {
     }
 
     create() {
-        // console.log(this.initConfig);
+        console.log(this.initConfig);
 
         switch (this.initConfig.scene) {
             case 'IntroScene': {
-                console.log("***");
                 if (this.initConfig.button == 'continueBtn') {
                     this.scene.start(JSON.parse(localStorage.getItem('initConfig')).scene);
                 }
@@ -34,6 +33,18 @@ export default class SceneSwitcher extends Phaser.Scene {
             }
             case 'Scene1': {
                 this.scene.start('Scene2Preloader');
+                break;
+            }
+            case 'Scene2Preloader': {
+                this.scene.start('Scene2');
+                break;
+            }
+            case 'Scene2': {
+                this.scene.start('Scene3Preloader');
+                break;
+            }
+            case 'Scene3Preloader': {
+                this.scene.start('Scene3');
                 break;
             }
         }

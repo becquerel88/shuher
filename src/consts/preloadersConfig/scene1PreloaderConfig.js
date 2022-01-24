@@ -10,7 +10,7 @@ export default [
             xPosition: 350,
             yPosition: 700,
             value: "CONDOMS",
-            scale: 1
+            scale: 1.3
         }
     },
     {
@@ -22,7 +22,7 @@ export default [
             xPosition: 350,
             yPosition: 1100,
             value: "ASHTRAY",
-            scale: 1
+            scale: 1.3
         }
     },
     {
@@ -34,7 +34,7 @@ export default [
             xPosition: 900,
             yPosition: 1150,
             value: "HOOKAH",
-            scale: 1
+            scale: 1.3
         }
     },
     {
@@ -46,7 +46,7 @@ export default [
             xPosition: 1450,
             yPosition: 1100,
             value: "PARTNER\nPANTS",
-            scale: 1
+            scale: 1.3
         }
     },
     {
@@ -58,7 +58,7 @@ export default [
             xPosition: 1450,
             yPosition: 700,
             value: "MONGED\nFRIEND",
-            scale: 1
+            scale: 1.3
         }
     },
 ];

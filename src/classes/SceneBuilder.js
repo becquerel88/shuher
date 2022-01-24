@@ -56,6 +56,11 @@ export default class SceneBuilder {
 
     // создание звуков
     crateSounds() {
+        // создание музыки
+        this.scene.customProperties.music = this.scene.sound.add(sounds.MAIN_MUSIC.name);
+        this.scene.customProperties.music.play();
+        this.scene.customProperties.music.setLoop(true);
+        // создание звуков анимаций
         this.scene.customProperties.catchSound = this.scene.sound.add(sounds.CATCH_SOUND.name);
         this.scene.customProperties.closetSound = this.scene.sound.add(sounds.CLOSET_SOUND.name);
         this.scene.customProperties.trashbinSound = this.scene.sound.add(sounds.TRASHBIN_SOUND.name);
@@ -95,6 +100,8 @@ export default class SceneBuilder {
 
             this.customProperties.dragObject.x = pointer.x;
             this.customProperties.dragObject.y = pointer.y;
+            console.log('x = ', pointer.x)
+            console.log('y = ', pointer.y);
 
             // ограничение игровой сцены по Y до UI бара
             if (pointer.y >= 1200) {

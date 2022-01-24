@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import Phaser, { Scene } from 'phaser';
 
 import RootScene from './scenes/RootScene';
 import SceneSwitcher from './scenes/SceneSwitcher';
@@ -7,9 +7,12 @@ import TitleScene from './scenes/TitleScene';
 import Scene1Preloader from './scenes/Scene1Preloader';
 import Scene1 from './scenes/Scene1';
 import Scene2Preloader from './scenes/Scene2Preloader';
+import Scene2 from './scenes/Scene2';
+import Scene3Preloader from './scenes/Scene3Preloader';
+import Scene3 from './scenes/Scene3';
 
+import WinningScene from './scenes/WinningScene';
 import GameOverScene from './scenes/GameOverScene';
-
 
 const config = {
     width: 1800,
@@ -31,6 +34,10 @@ const config = {
         Scene1Preloader,
         Scene1,
         Scene2Preloader,
+        Scene2,
+        Scene3Preloader,
+        Scene3,
+        WinningScene,
         GameOverScene],
     render: {
         pixelArt: false
