@@ -1,4 +1,4 @@
-import { backgrounds, sounds } from '../consts/common';
+import { backgrounds, uiElements, sounds } from '../consts/common';
 import { find, forEach } from 'lodash';
 
 export default class SceneBuilder {
@@ -55,7 +55,7 @@ export default class SceneBuilder {
     }
 
     // создание звуков
-    crateSounds() {
+    createSounds() {
         // создание музыки
         this.scene.customProperties.music = this.scene.sound.add(sounds.MAIN_MUSIC.name);
         this.scene.customProperties.music.play();
@@ -72,51 +72,71 @@ export default class SceneBuilder {
         this.scene.customProperties.itemCounterToHide = this.scene.customProperties.items.length;
     }
 
+    createHandMarker(positionX, positionY) {
+        let posX = positionX - 100;
+        let posY = positionY - 100;
+
+        this.scene.customProperties.marker = this.scene.add.sprite(posX, posY, uiElements.HAND_MARKER.name);
+
+        console.log(this.scene);
+
+        this.scene.anims.create({
+            key: 'markerAnim',
+            frames: this.scene.anims.generateFrameNumbers(uiElements.HAND_MARKER.name),
+            frameRate: 16,
+            yoyo: 1,
+            repeat: -1
+        });
+
+        this.scene.customProperties.marker.play('markerAnim');
+    }
+
     // создание системы перемещения предметов на сцене
     makeItemsDraggable() {
-        this.scene.input.on('pointerdown', startDrag, this.scene);
+        this.scene.input.on('pointerdown', this.startDrag, this);
+    }
 
-        function startDrag(pointer, targets) {
-            // targets[0] - определение верхнего элемента под курсором
-            this.customProperties.dragObject = targets[0];
-            if (!this.customProperties.dragObject) return; // пропуск обьекта, если setInteractive обьекта = false
+    // взятие предмета
+    startDrag(pointer, targets) {
+        this.scene.customProperties.dragObject = targets[0]; // targets[0] - определение верхнего элемента под курсором
+        if (!this.scene.customProperties.dragObject) return; // пропуск обьекта, если setInteractive обьекта = false
+        this.scene.customProperties.catchSound.play(); // звук анимации взятия предмета в руку
 
-            this.customProperties.catchSound.play();
+        // определение зоны, в которую должен быть помещен взятый в руку предмет и ее анимация
+        this.scene.customProperties.zoneAnimation = find(this.scene.customProperties.zones, function (element) {
+            return element.customProperties.zoneKey == this.suitableZone;
+        }.bind(this.scene.customProperties.dragObject));
 
-            // определение зоны, в которую должен быть помещен взятый в руку предмет и ее анимация
-            this.customProperties.zoneAnimation = find(this.customProperties.zones, function (element) {
-                return element.customProperties.zoneKey == this.suitableZone;
-            }.bind(this.customProperties.dragObject));
+        this.scene.customProperties.zoneAnimation.setFrame(0);
+        this.createHandMarker(this.scene.customProperties.zoneAnimation.x, this.scene.customProperties.zoneAnimation.y);
 
-            this.customProperties.zoneAnimation.setFrame(0);
 
-            this.input.off('pointerdown', this.startDrag, this);
-            this.customProperties.isMovingMouse = true; // регистрация перемещения курсора
-            this.input.on('pointermove', doDrag, this);
-            this.input.on('pointerup', stopDrag, this);
+        this.scene.input.off('pointerdown', this.startDrag, this);
+        this.scene.customProperties.isMovingMouse = true; // регистрация перемещения курсора
+        this.scene.input.on('pointermove', this.doDrag, this);
+        this.scene.input.on('pointerup', this.stopDrag, this);
+    }
+
+    // перемещение предмета
+    doDrag(pointer) {
+
+        this.scene.customProperties.dragObject.x = pointer.x;
+        this.scene.customProperties.dragObject.y = pointer.y;
+
+        // ограничение игровой сцены по Y до UI бара
+        if (pointer.y >= 1200) {
+            this.scene.customProperties.dragObject.y = 1200;
         }
+    }
 
-        function doDrag(pointer) {
+    // остановка перемещения предмета
+    stopDrag() {
+        this.scene.input.on('pointerdown', this.startDrag, this);
+        this.scene.input.off('pointermove', this.doDrag, this);
+        this.scene.input.off('pointerup', this.stopDrag, this);
 
-            this.customProperties.dragObject.x = pointer.x;
-            this.customProperties.dragObject.y = pointer.y;
-            console.log('x = ', pointer.x)
-            console.log('y = ', pointer.y);
-
-            // ограничение игровой сцены по Y до UI бара
-            if (pointer.y >= 1200) {
-                this.customProperties.dragObject.y = 1200;
-            }
-        }
-
-        function stopDrag() {
-            this.input.on('pointerdown', startDrag, this);
-            this.input.off('pointermove', doDrag, this);
-            this.input.off('pointerup', stopDrag, this);
-
-            // анимация зоны в исходное состояние
-            this.customProperties.isMovingMouse = false;
-        }
+        this.scene.customProperties.isMovingMouse = false; // анимация зоны в исходное состояние
+        this.scene.customProperties.marker.destroy(); // удаление маркера (руки указателя)
     }
 
     // создание регистратора пересечения предметов и зон
@@ -146,7 +166,7 @@ export default class SceneBuilder {
         this.createZones();
         this.createItems();
         this.createUIBarBackground();
-        this.crateSounds();
+        this.createSounds();
         this.createItemsCounter();
         this.makeItemsDraggable();
         this.createOverlap();

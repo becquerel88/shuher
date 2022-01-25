@@ -8,7 +8,7 @@ export default [
         scale: 1,
         description: {
             xPosition: 300,
-            yPosition: 1050,
+            yPosition: 1000,
             value: "THE ROUGH\nGUIDE TO\nAMSTERDAM",
             scale: 1.3
         }
@@ -19,8 +19,8 @@ export default [
         itemKey: items.GRASS_BAG.name,
         scale: 1,
         description: {
-            xPosition: 900,
-            yPosition: 1050,
+            xPosition: 925,
+            yPosition: 1000,
             value: "GRASS BAG",
             scale: 1.3
         }
@@ -31,8 +31,8 @@ export default [
         itemKey: items.PORN.name,
         scale: 1,
         description: {
-            xPosition: 1450,
-            yPosition: 1050,
+            xPosition: 1500,
+            yPosition: 1000,
             value: "PORN",
             scale: 1.3
         }

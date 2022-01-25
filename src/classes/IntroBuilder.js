@@ -55,6 +55,7 @@ export default class IntroBuilder {
             }, this);
 
             btn.on('pointerdown', function (pointer) {
+                btn.off('pointerdown');
                 this.customProperties.btnSound.play();
                 this.customProperties.music.stop();
                 // анимация плавной смены сцены

@@ -1,6 +1,6 @@
 import { backgrounds, fontIds, sounds, uiElements } from "../consts/common";
 
-export default class GameOverScene extends Phaser.Scene {
+export default class WinningScene extends Phaser.Scene {
     constructor() {
         super('WinningScene');
     }
@@ -24,6 +24,8 @@ export default class GameOverScene extends Phaser.Scene {
     }
 
     createSounds() {
+        this.customProperties.continueBtn = this.sound.add(sounds.BTN_CLICK.name);
+
         this.sound.add(sounds.WINNING_SOUND.name).play();
     }
 
@@ -41,6 +43,8 @@ export default class GameOverScene extends Phaser.Scene {
         }, this.scene);
 
         playBtn.on('pointerdown', function () {
+            playBtn.off('pointerdown');
+            this.customProperties.continueBtn.play();
             // анимация плавной смены сцены
             this.cameras.main.fadeOut(300, 0, 0, 0);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {

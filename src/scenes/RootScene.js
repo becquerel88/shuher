@@ -21,7 +21,7 @@ export default class RootScene extends Phaser.Scene {
             this.scene.start('TitleScene');
         }
         else {
-            this.scene.start('IntroScene');
+            this.scene.start('Scene3Preloader');
         }
     }
 

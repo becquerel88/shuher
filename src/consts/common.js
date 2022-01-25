@@ -14,7 +14,8 @@ export const uiElements = {
     PLAY_BTN: { name: 'playBtn', path: 'assets/play_btn.png', frameSize: { frameWidth: 368, frameHeight: 78 } },
     RESTART_BTN: { name: 'restartBtn', path: 'assets/restart_btn.png', frameSize: { frameWidth: 250, frameHeight: 50 } },
     CONTINUE_BTN: { name: 'continueBtn', path: 'assets/continue_btn.png', frameSize: { frameWidth: 310, frameHeight: 50 } },
-    WINNING_CONTINUE_BTN: { name: 'winningContinueBtn', path: 'assets/winning_continue_btn.png', frameSize: { frameWidth: 470, frameHeight: 50 } }
+    WINNING_CONTINUE_BTN: { name: 'winningContinueBtn', path: 'assets/winning_continue_btn.png', frameSize: { frameWidth: 470, frameHeight: 50 } },
+    HAND_MARKER: { name: 'handMarker', path: 'assets/marker.png', frameSize: { frameWidth: 175, frameHeight: 173} }
 };
 
 // Константы шрифтов

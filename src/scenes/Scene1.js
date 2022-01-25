@@ -11,6 +11,7 @@ export default class Scene1 extends Phaser.Scene {
     create() {
         const sceneBuilder = new SceneBuilder(this, itemsInfo, zonesInfo);
         sceneBuilder.buildScene();
+
     }
 
     update() {
