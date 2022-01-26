@@ -1,5 +1,5 @@
 import { forEach } from "lodash";
-import { backgrounds, sounds, fontIds } from "../consts/common";
+import { backgrounds, sounds, fontIds, configConsts } from "../consts/common";
 
 export default class IntroBuilder {
     constructor(scene, config) {
@@ -32,7 +32,7 @@ export default class IntroBuilder {
     createSounds() {
         // создание музыки
         this.scene.customProperties.music = this.scene.sound.add(sounds.MAIN_MUSIC.name);
-        this.scene.customProperties.music.play();
+        this.scene.customProperties.music.play(configConsts.MUSIC_VOLUME);
         this.scene.customProperties.music.setLoop(true);
         // создание звука нажатия на кнопку
         this.scene.customProperties.btnSound = this.scene.sound.add(sounds.BTN_CLICK.name);

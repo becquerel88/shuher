@@ -3,10 +3,10 @@ import { backgrounds, fontIds, sounds, uiElements } from "../consts/common";
 export default class WinningScene extends Phaser.Scene {
     constructor() {
         super('WinningScene');
+        this.customProperties = {};
     }
 
     init(initConfig) {
-        this.customProperties = {};
         this.customProperties.initConfig = initConfig;
     }
 

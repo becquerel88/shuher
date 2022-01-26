@@ -1,4 +1,4 @@
-import { backgrounds, uiElements, sounds } from '../consts/common';
+import { backgrounds, uiElements, sounds, fontIds, configConsts } from '../consts/common';
 import { find, forEach } from 'lodash';
 
 export default class SceneBuilder {
@@ -58,7 +58,7 @@ export default class SceneBuilder {
     createSounds() {
         // создание музыки
         this.scene.customProperties.music = this.scene.sound.add(sounds.MAIN_MUSIC.name);
-        this.scene.customProperties.music.play();
+        this.scene.customProperties.music.play(configConsts.MUSIC_VOLUME);
         this.scene.customProperties.music.setLoop(true);
         // создание звуков анимаций
         this.scene.customProperties.catchSound = this.scene.sound.add(sounds.CATCH_SOUND.name);
@@ -77,8 +77,6 @@ export default class SceneBuilder {
         let posY = positionY - 100;
 
         this.scene.customProperties.marker = this.scene.add.sprite(posX, posY, uiElements.HAND_MARKER.name);
-
-        console.log(this.scene);
 
         this.scene.anims.create({
             key: 'markerAnim',
@@ -155,9 +153,21 @@ export default class SceneBuilder {
     }
 
     gameover() {
-        // console.log(this.scene);
-        //     this.scene.setActive(false);
-        // this.scene.launch('GameOverScene', this.constructor.name);
+        this.scene.customProperties.music.stop();
+        this.scene.scene.setActive(false);
+        this.scene.scene.launch('GameOverScene', this.scene.constructor.name);
+    }
+
+    createTimer() {
+        this.scene.timer = this.scene.time.addEvent({
+            // delay: 25000,
+            delay: 15000,
+            paused: false,
+            callback: this.gameover,
+            callbackScope: this
+        });
+
+        this.scene.customProperties.timerText = this.scene.add.text(200, 1350, '', fontIds.TITLE_FONT).setOrigin(0.5, 0.5);
     }
 
     buildScene() {
@@ -170,7 +180,7 @@ export default class SceneBuilder {
         this.createItemsCounter();
         this.makeItemsDraggable();
         this.createOverlap();
-        this.gameover();
+        this.createTimer();
     }
 }
 

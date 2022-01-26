@@ -9,7 +9,6 @@ export default class Scene3Preloader extends Phaser.Scene {
     }
 
     create() {
-        console.log(this);
         const preloaderBuilder = new PreloaderBuilder(this, 'ROUND 3', scene3PreloaderConfig);
         preloaderBuilder.buildScene();
     }

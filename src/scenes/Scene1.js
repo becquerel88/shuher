@@ -11,7 +11,6 @@ export default class Scene1 extends Phaser.Scene {
     create() {
         const sceneBuilder = new SceneBuilder(this, itemsInfo, zonesInfo);
         sceneBuilder.buildScene();
-
     }
 
     update() {
@@ -21,25 +20,7 @@ export default class Scene1 extends Phaser.Scene {
             this.scene.start('WinningScene', { scene: this.constructor.name });
             localStorage.setItem('initConfig', JSON.stringify({ scene: this.constructor.name }));
         }
+
+        this.customProperties.timerText.setText(this.timer.getRemainingSeconds().toFixed());
     }
 }
-
-        // this.timer = this.time.addEvent({
-        //     delay: 25000,
-        //     // delay: 2000,
-        //     paused: false,
-        //     callback: this.gameover,
-        //     callbackScope: this
-        // });
-
-        // this.timerText = this.add.text(200, 1350, '', { font: `70px ${fontIds.MAIN_FONT}`, fill: '#ffffff' });
-        // this.timerText.setOrigin(0.5, 0.5);
-
-
-
-
-    // update() {
-    //     this.timerText.setText(this.timer.getRemainingSeconds().toFixed());
-
-    //     
-    // }

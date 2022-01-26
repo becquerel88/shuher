@@ -5,7 +5,8 @@ export const backgrounds = {
     MAIN_BG: { name: 'mainBg', path: 'assets/main_bg.png' },
     UI_BG: { name: 'uiBg', path: 'assets/ui_bg.png' },
     GAMEOVER_BLUR_BG: { name: 'gameOverBlurBg', path: 'assets/blur.png' },
-    WINNING_BG: { name: 'winningBg', path: 'assets/winning_bg.png' }
+    WINNING_BG: { name: 'winningBg', path: 'assets/winning_bg.png' },
+    PARENTS_GAMEOVER: { name: 'parentsGameoverBg', path: 'assets/parents_gameover.png'}
 };
 
 // Интерфейсные константы
@@ -14,8 +15,8 @@ export const uiElements = {
     PLAY_BTN: { name: 'playBtn', path: 'assets/play_btn.png', frameSize: { frameWidth: 368, frameHeight: 78 } },
     RESTART_BTN: { name: 'restartBtn', path: 'assets/restart_btn.png', frameSize: { frameWidth: 250, frameHeight: 50 } },
     CONTINUE_BTN: { name: 'continueBtn', path: 'assets/continue_btn.png', frameSize: { frameWidth: 310, frameHeight: 50 } },
-    WINNING_CONTINUE_BTN: { name: 'winningContinueBtn', path: 'assets/winning_continue_btn.png', frameSize: { frameWidth: 470, frameHeight: 50 } },
-    HAND_MARKER: { name: 'handMarker', path: 'assets/marker.png', frameSize: { frameWidth: 175, frameHeight: 173} }
+    WINNING_CONTINUE_BTN: { name: 'winningContinueBtn', path: 'assets/winning_continue_btn.png', frameSize: { frameWidth: 470, frameHeight: 50 } },FAIL_RESTART_BTN: { name: 'failRestartBtn', path: 'assets/fail_restart_btn.png', frameSize: { frameWidth: 410, frameHeight: 50 } },
+    HAND_MARKER: { name: 'handMarker', path: 'assets/marker.png', frameSize: { frameWidth: 175, frameHeight: 173 } }
 };
 
 // Константы шрифтов
@@ -61,5 +62,10 @@ export const sounds = {
     TRASHBIN_SOUND: { name: 'trashbinSound', path: 'assets/sounds/trashbin_sound.ogg' },
     CLOSET_SOUND: { name: 'closetSound', path: 'assets/sounds/closet_sound.ogg' },
     BED_SOUND: { name: 'bedSound', path: 'assets/sounds/bed_sound.ogg' },
-    WINNING_SOUND: { name: 'winningSound', path: 'assets/sounds/winning_sound.ogg' }
+    WINNING_SOUND: { name: 'winningSound', path: 'assets/sounds/winning_sound.ogg' },
+    FAIL_SOUND: {name: 'failSound', path: 'assets/sounds/fail_sound.ogg'}
+};
+
+export const configConsts = {
+    MUSIC_VOLUME: { volume: 0.2 }
 };

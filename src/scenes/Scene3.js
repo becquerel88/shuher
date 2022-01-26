@@ -20,6 +20,7 @@ export default class Scene3 extends Phaser.Scene {
             this.scene.start('WinningScene', { scene: this.constructor.name });
             localStorage.setItem('initConfig', JSON.stringify({ scene: this.constructor.name }));
         }
-    }
 
+        this.customProperties.timerText.setText(this.timer.getRemainingSeconds().toFixed());
+    }
 }

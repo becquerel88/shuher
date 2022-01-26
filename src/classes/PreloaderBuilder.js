@@ -1,5 +1,5 @@
 import { forEach } from 'lodash';
-import { backgrounds, uiElements, sounds, fontIds } from '../consts/common';
+import { backgrounds, uiElements, sounds, fontIds, configConsts } from '../consts/common';
 
 export default class PreloaderBuilder {
     constructor(scene, title, itemsInfoArray) {
@@ -34,7 +34,7 @@ export default class PreloaderBuilder {
 
         // музыка
         this.scene.customProperties.music = this.scene.sound.add(sounds.PRELOADER_MUSIC.name);
-        this.scene.customProperties.music.play();
+        this.scene.customProperties.music.play(configConsts.MUSIC_VOLUME);
         this.scene.customProperties.music.setLoop(true);
         
         // звук анимации появления предмета
