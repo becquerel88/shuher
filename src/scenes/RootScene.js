@@ -1,6 +1,6 @@
 import { forEach } from 'lodash';
 import Phaser from 'phaser';
-import { backgrounds, uiElements, items, sounds, zones } from '../consts/common';
+import { backgrounds, uiElements, items, sounds, zones, videos } from '../consts/common';
 import loadFont from '../utils/fontloader'
 
 // Служебная сцена, для переключения уровней и промежуточных сцен
@@ -21,7 +21,7 @@ export default class RootScene extends Phaser.Scene {
             this.scene.start('TitleScene');
         }
         else {
-            this.scene.start('Scene1');
+            this.scene.start('IntroScene');
         }
     }
 
@@ -51,8 +51,15 @@ export default class RootScene extends Phaser.Scene {
             this.load.spritesheet(element.name, element.path, element.frameSize);
         }.bind(this));
 
+        // Загрузка ресурсов для видео
+        forEach(videos, function (element) {
+            this.load.video(element.name, element.path);
+        }.bind(this));
+
         // Загрузка ресурсов для шрифтов
         loadFont('neuropol_x_bold', 'assets/fonts/neuropol_x_bold.ttf');
         loadFont('comic_sans_bold', 'assets/fonts/comic_sans_bold.ttf');
+
+
     }
 }

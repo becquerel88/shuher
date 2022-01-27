@@ -10,9 +10,11 @@ import Scene2Preloader from './scenes/Scene2Preloader';
 import Scene2 from './scenes/Scene2';
 import Scene3Preloader from './scenes/Scene3Preloader';
 import Scene3 from './scenes/Scene3';
+import EndGameScene from './scenes/EndGameScene';
 
 import WinningScene from './scenes/WinningScene';
 import GameOverScene from './scenes/GameOverScene';
+
 
 const config = {
     width: 1800,
@@ -37,6 +39,7 @@ const config = {
         Scene2,
         Scene3Preloader,
         Scene3,
+        EndGameScene,
         WinningScene,
         GameOverScene],
     render: {

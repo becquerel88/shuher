@@ -6,7 +6,7 @@ export const backgrounds = {
     UI_BG: { name: 'uiBg', path: 'assets/ui_bg.png' },
     GAMEOVER_BLUR_BG: { name: 'gameOverBlurBg', path: 'assets/blur.png' },
     WINNING_BG: { name: 'winningBg', path: 'assets/winning_bg.png' },
-    PARENTS_GAMEOVER: { name: 'parentsGameoverBg', path: 'assets/parents_gameover.png'}
+    PARENTS_GAMEOVER: { name: 'parentsGameoverBg', path: 'assets/parents_gameover.png' }
 };
 
 // Интерфейсные константы
@@ -15,8 +15,9 @@ export const uiElements = {
     PLAY_BTN: { name: 'playBtn', path: 'assets/play_btn.png', frameSize: { frameWidth: 368, frameHeight: 78 } },
     RESTART_BTN: { name: 'restartBtn', path: 'assets/restart_btn.png', frameSize: { frameWidth: 250, frameHeight: 50 } },
     CONTINUE_BTN: { name: 'continueBtn', path: 'assets/continue_btn.png', frameSize: { frameWidth: 310, frameHeight: 50 } },
-    WINNING_CONTINUE_BTN: { name: 'winningContinueBtn', path: 'assets/winning_continue_btn.png', frameSize: { frameWidth: 470, frameHeight: 50 } },FAIL_RESTART_BTN: { name: 'failRestartBtn', path: 'assets/fail_restart_btn.png', frameSize: { frameWidth: 410, frameHeight: 50 } },
-    HAND_MARKER: { name: 'handMarker', path: 'assets/marker.png', frameSize: { frameWidth: 175, frameHeight: 173 } }
+    WINNING_CONTINUE_BTN: { name: 'winningContinueBtn', path: 'assets/winning_continue_btn.png', frameSize: { frameWidth: 470, frameHeight: 50 } }, FAIL_RESTART_BTN: { name: 'failRestartBtn', path: 'assets/fail_restart_btn.png', frameSize: { frameWidth: 410, frameHeight: 50 } },
+    HAND_MARKER: { name: 'handMarker', path: 'assets/marker.png', frameSize: { frameWidth: 175, frameHeight: 173 } },
+    PLAY_AGAIN_BTN: { name: 'playAgainBtn', path: 'assets/final_restart.png', frameSize: { frameWidth: 320, frameHeight: 50 } }
 };
 
 // Константы шрифтов
@@ -50,7 +51,7 @@ export const zones = {
     LOCKER: { name: 'locker', path: 'assets/locker.png', frameSize: { frameWidth: 200, frameHeight: 300 } },
     BED: { name: 'bed', path: 'assets/bed.png', frameSize: { frameWidth: 542, frameHeight: 660 } },
     CLOSET: { name: 'closet', path: 'assets/closet.png', frameSize: { frameWidth: 532, frameHeight: 627 } }
-}
+};
 
 // Константы звуков
 export const sounds = {
@@ -63,9 +64,13 @@ export const sounds = {
     CLOSET_SOUND: { name: 'closetSound', path: 'assets/sounds/closet_sound.ogg' },
     BED_SOUND: { name: 'bedSound', path: 'assets/sounds/bed_sound.ogg' },
     WINNING_SOUND: { name: 'winningSound', path: 'assets/sounds/winning_sound.ogg' },
-    FAIL_SOUND: {name: 'failSound', path: 'assets/sounds/fail_sound.ogg'}
+    FAIL_SOUND: { name: 'failSound', path: 'assets/sounds/fail_sound.ogg' }
+};
+
+export const videos = {
+    END_GAME_VIDEO: { name: 'endgame', path: 'assets/videos/final.mp4' }
 };
 
 export const configConsts = {
-    MUSIC_VOLUME: { volume: 0.2 }
+    MUSIC_VOLUME: { volume: 0.7 }
 };

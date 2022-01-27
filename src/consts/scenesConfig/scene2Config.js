@@ -48,7 +48,7 @@ export const itemsInfo = [
         yPosition: 1050,
         itemKey: items.DEALER.name,
         scale: 0.5,
-        suitableZone: zones.BED.name
+        suitableZone: zones.CLOSET.name
     },
     {
         xPosition: 220,

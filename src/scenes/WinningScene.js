@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 import { backgrounds, fontIds, sounds, uiElements } from "../consts/common";
 
 export default class WinningScene extends Phaser.Scene {

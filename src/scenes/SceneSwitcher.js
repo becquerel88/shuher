@@ -47,6 +47,10 @@ export default class SceneSwitcher extends Phaser.Scene {
                 this.scene.start('Scene3');
                 break;
             }
+            case 'Scene3': {
+                this.scene.start('EndGameScene');
+                break;
+            }
         }
     }
 }
